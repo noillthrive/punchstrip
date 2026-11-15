@@ -118,11 +118,11 @@ C:\mabi-mcp\analysis\run-ear.cmd --help
 클로드 코드(Claude Code)에서는:
 
 ```bat
-claude mcp add --transport stdio --env MABIICCO_APP=C:\Tools\MabiIcco-1.5.12\app --env MABI_DLS=C:\Nexon\Mabinogi\mp3 mabiicco -- cmd /c C:\mabi-mcp\bridge\run-bridge.cmd
+claude mcp add --transport stdio mabiicco --env MABIICCO_APP=C:\Tools\MabiIcco-1.5.12\app --env MABI_DLS=C:\Nexon\Mabinogi\mp3 -- cmd /c C:\mabi-mcp\bridge\run-bridge.cmd
 claude mcp add --transport stdio mabi-ear -- cmd /c C:\mabi-mcp\analysis\run-ear.cmd
 ```
 
-(`setx`로 환경 변수를 넣었다면 `--env …`는 빼도 된다. 모든 프로젝트에서 쓰려면 `--scope user`를 더한다.) 확인: `claude mcp list`에서 둘 다 연결됨(connected), 클로드 코드 안 `/mcp`에서 도구 39개와 18개.
+(**서버 이름(`mabiicco`)을 `--env`보다 앞에** 쓴다 — `--env`는 값을 여러 개 받아서, 이름이 뒤에 오면 이름까지 환경 변수로 읽고 "Invalid environment variable format"으로 실패한다. `setx`로 환경 변수를 넣었다면 `--env …`는 빼도 된다. 모든 프로젝트에서 쓰려면 서버 이름 앞에 `--scope user`를 더한다(예: `claude mcp add --transport stdio --scope user mabiicco --env … -- cmd /c …`). mabi-ear에 이미 있는 파이썬 환경을 쓰게 하려면 같은 식으로 `mabi-ear --env MABIEAR_PYTHON=<그 python.exe> -- cmd /c …`.) 확인: `claude mcp list`에서 둘 다 연결됨(connected), 클로드 코드 안 `/mcp`에서 도구 39개와 18개.
 
 다른 MCP 클라이언트는 stdio 서버 두 개를 같은 명령으로 등록한다: `cmd /c C:\mabi-mcp\bridge\run-bridge.cmd`(환경 변수 `MABIICCO_APP`, `MABI_DLS`)와 `cmd /c C:\mabi-mcp\analysis\run-ear.cmd`. 시험한 클라이언트는 클로드 코드뿐이다.
 
