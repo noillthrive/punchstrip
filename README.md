@@ -7,17 +7,17 @@ AI 모델이 **MabiIcco**(마비노기 MML 편집기)를 쓸 수 있게 하는 M
 
 punchstrip 0.7.1 = 브리지 0.7.0 + mabi-ear 0.5.0.
 
-> **MabiIcco 필수.** punchstrip에는 MabiIcco의 코드가 포함되어 있지 않습니다. 설치된 MabiIcco의 엔진(`MabiIcco.jar`)을 불러 쓰며 **MabiIcco가 설치된 곳에서만 작동합니다.** MabiIcco는 원 제작자 たんらる 님의 프로그램이고 공식 배포처는 <https://github.com/fourthline/mmlTools> 입니다.
+> **MabiIcco 필수.** punchstrip에는 MabiIcco의 코드가 포함되어 있지 않습니다. 설치된 MabiIcco의 엔진(`MabiIcco.jar`)을 불러와 사용하며 **MabiIcco가 설치된 곳에서만 작동합니다.** MabiIcco는 원 제작자 たんらる 님의 프로그램이고 공식 배포처는 <https://github.com/fourthline/mmlTools> 입니다.
 
 ## 퀵 스타트
 
-사용하는 에이전트(클로드 권장)에게 아래 문장을 붙여넣으세요.
+사용하는 에이전트에게 아래 문장을 붙여넣으세요.
 
 ```text
 이 PC에 punchstrip(https://github.com/noillthrive/punchstrip)을 설치해 주세요. 설치 순서 문서 https://raw.githubusercontent.com/noillthrive/punchstrip/main/INSTALL.md 를 읽고 처음부터 차례대로 실행하고 MabiIcco 폴더처럼 직접 찾지 못한 정보만 물어보세요. mabiicco와 mabi-ear 두 MCP 서버를 모두 등록한 뒤, smoke-test.cmd의 마지막 줄과 두 서버의 도구 수(mabiicco 39개, mabi-ear 18개)를 알려 주세요.
 ```
 
-클로드 코드처럼 PC에서 명령을 실행할 수 있는 에이전트에게 맡기고, 설치가 끝나면 에이전트를 다시 시작해야 두 서버가 보입니다.
+클로드 코드처럼 PC에서 명령을 실행할 수 있는 에이전트에게 맡기고, 설치가 끝나면 에이전트를 다시 시작해야 서버가 보입니다.
 
 ## 무엇을 위한 도구인가
 
@@ -36,19 +36,6 @@ punchstrip 0.7.1 = 브리지 0.7.0 + mabi-ear 0.5.0.
 - **Python 3.11**과 `py` 런처. mabi-ear의 패키지가 3.11에 맞춰 고정되어 있다.
 - **Windows 10/11** 64비트.
 - **MCP 클라이언트**.
-
-## English summary
-
-**punchstrip** lets an AI model use **MabiIcco**, the MML editor for the game Mabinogi, through two MCP servers: **mabiicco** (Java, 39 tools: headless score editing, MML size and rank checks, reference-MIDI comparison, offline WAV rendering, ensemble finishing) and **mabi-ear** (Python 3.11, 18 tools: aligning and comparing renders with the original recording, stem extraction helpers, listening excerpts, a note-by-note check of the score's lead, agreement with the singing). Tell the AI how many players the score is for and whether to use 자브키엘, give it a MIDI of the song and the original recording (separated stems work even better), and get back an `.mmi` file for MabiIcco.
-
-- **It contains no MabiIcco code and requires an installed MabiIcco** (1.5.11 and 1.5.12 are confirmed to work). Get MabiIcco from its author: <https://github.com/fourthline/mmlTools>. Without it the bridge stops with a message saying so.
-- **Requirements:** Windows 10/11 x64, Java 17+, Python 3.11 with the `py` launcher, MabiIcco, Mabinogi installed (for the `MSXspirit0*.dls` sound banks), an MCP client (tested with Claude Code).
-- **Install:** give the Quick Start prompt above (퀵 스타트) to an agent that can run commands, or follow `INSTALL.md` yourself: unzip the latest `punchstrip-<version>-win.zip` to a writable ASCII path such as `C:\mabi-mcp`; set `MABIICCO_APP` to MabiIcco's `app` folder (and `MABI_DLS` to Mabinogi's `mp3` folder only if the sound banks are not found); run `smoke-test.cmd` (prints PASS/FAIL); run `analysisun-ear.cmd --help` once; register `bridgeun-bridge.cmd` and `analysisun-ear.cmd` as stdio MCP servers.
-- **For beginners:** if you have MabiIcco, a MIDI of a song you love and the original recording, ask your agent to make an ensemble score file (`.mmi`). We hope this tool gets you interested in composing.
-- **For experienced arrangers:** arranging involves a lot of work that needs hands but not ears: drafting from MIDI or stems, counting and fitting characters, transposing between instruments that sound in different octaves, rendering, comparing with the original. punchstrip hands roughly 80% of that mechanical work to the AI so that you can spend your time on the part that needs ears.
-- In both cases, the final judgement is yours.
-- **Signature sound:** when a score is finished, `score_finalize` adds a short lead-in "B–D–G–E" played by every track, plus silent end notes so that all players finish at the same moment. Skip them with `signature: false` and `end_padding: false`. The signature is there so that scores made with this tool can be recognised. **Using this tool to modify and distribute someone else's arrangement without permission is prohibited.**
-- **License:** punchstrip allows noncommercial use, modification and distribution under the PolyForm Noncommercial License 1.0.0 (SPDX `PolyForm-Noncommercial-1.0.0`, full text in `LICENSE`). Copies carry the licence and the line `Required Notice: Copyright noillthrive (https://github.com/noillthrive/punchstrip)`. The notes on the three files that follow MabiIcco's behaviour are in `NOTICE`. MabiIcco, its binaries and the game's sound files are not part of this repository.
 
 ## 직접 설치하려면
 
@@ -84,6 +71,45 @@ punchstrip 0.7.1 = 브리지 0.7.0 + mabi-ear 0.5.0.
 - **렌더**: 소리 렌더와 3MLE `.mml` 읽기, 기본 설정의 `instruments`에는 마비노기 DLS가 필요합니다. `instruments`에 `dls:false`를 주면 내장 표를 씁니다. 렌더는 JDK 내장 신시사이저로 하므로 MabiIcco 창의 WAV 내보내기와 샘플 단위로는 다릅니다. 구체적인 차이는 자동 게인, 6.8 ms보다 짧은 음, 모바일 타악기의 무작위 음에서 나며, 자세한 내용은 `BUILD.md`에 있습니다. 악기에 따라 적은 음보다 1~2옥타브 높게 울리므로, 원곡 음높이를 옮길 때는 `pitch_mode: "sounding"`을 쓰세요.
 - **mabi-ear**: 유사도는 원곡과 닮은 정도를 재고 분리된 스템 기반으로 판단하는 스템 도구에는 직접 분리한 스템이 필요합니다. `lead_check`를 **전체 믹스**로 돌리면 반주의 화음 음이 노래보다 세게 잡히는 곳에서는 멀쩡한 음도 틀림으로 나옵니다. 측정한 한 곡에서 맞다고 본 음의 10 % 가까이였고, 보컬 스템으로는 1 % 안팎이었습니다. 그래서 믹스 결과는 의심 목록으로 쓰고, **스템**과 노래 전사가 있으면 그것으로 확인하세요. `phone_version`·`excerpt_ab`는 출력 경로를 생략하면 `MABIBRIDGE_OUT`과 상관없이 입력 파일 옆에 씁니다.
 - **설치 폴더**는 쓰기 가능한 영문 경로여야 하며, jar를 다시 빌드하면 떠 있는 서버를 다시 띄웁니다.
+
+## 라이선스
+
+punchstrip은 비상업 사용 및 수정, 배포를 허용하며 PolyForm Noncommercial License 1.0.0을 따릅니다. 전문은 `LICENSE`에 있습니다. 사본을 나눌 때는 라이선스와 함께 아래 한 줄을 그대로 넣어주세요.
+
+```text
+Required Notice: Copyright noillthrive (https://github.com/noillthrive/punchstrip)
+```
+
+MabiIcco의 동작을 그대로 따른 세 파일의 해당 부분은 원 제작자 たんらる 님의 작업을 따르며, 목록과 설명은 `NOTICE`에 있습니다. MabiIcco와 그 바이너리, 게임 음원은 이 저장소에 들어 있지 않고 각 권리자의 것입니다. 함께 들어 있는 제3자 라이브러리는 Gson뿐이며 `NOTICE`에 적혀 있습니다. JUnit·Hamcrest는 시험용 의존성으로 `lib/test/README.md`에 따라 따로 준비하세요.
+
+## 만든 사람
+- LT 크라우리제
+- Anthropic Claude
+
+## 스페셜 땡스
+- MabiIcco 원 제작자 たんらる 님 (https://github.com/fourthline/mmlTools)
+- MD 리세드리카 님 (https://www.mabicompose.com/)
+
+- LT Cooper
+- LT 베어섭난민
+- LT 남븝 님
+- 마도카 작곡 게시판의 존경하는 코더님들
+
+## English summary
+
+**punchstrip** lets an AI model use **MabiIcco**, the MML editor for the game Mabinogi, through two MCP servers: **mabiicco** (Java, 39 tools: headless score editing, MML size and rank checks, reference-MIDI comparison, offline WAV rendering, ensemble finishing) and **mabi-ear** (Python 3.11, 18 tools: aligning and comparing renders with the original recording, stem extraction helpers, listening excerpts, a note-by-note check of the score's lead, agreement with the singing). Tell the AI how many players the score is for and whether to use 자브키엘, give it a MIDI of the song and the original recording (separated stems work even better), and get back an `.mmi` file for MabiIcco.
+
+- **It contains no MabiIcco code and requires an installed MabiIcco** (1.5.11 and 1.5.12 are confirmed to work). Get MabiIcco from its author: <https://github.com/fourthline/mmlTools>. Without it the bridge stops with a message saying so.
+- **Requirements:** Windows 10/11 x64, Java 17+, Python 3.11 with the `py` launcher, MabiIcco, Mabinogi installed (for the `MSXspirit0*.dls` sound banks), an MCP client (tested with Claude Code).
+- **Install:** give the Quick Start prompt above (퀵 스타트) to an agent that can run commands, or follow `INSTALL.md` yourself: unzip the latest `punchstrip-<version>-win.zip` to a writable ASCII path such as `C:\mabi-mcp`; set `MABIICCO_APP` to MabiIcco's `app` folder (and `MABI_DLS` to Mabinogi's `mp3` folder only if the sound banks are not found); run `smoke-test.cmd` (prints PASS/FAIL); run `analysis
+un-ear.cmd --help` once; register `bridge
+un-bridge.cmd` and `analysis
+un-ear.cmd` as stdio MCP servers.
+- **For beginners:** if you have MabiIcco, a MIDI of a song you love and the original recording, ask your agent to make an ensemble score file (`.mmi`). We hope this tool gets you interested in composing.
+- **For experienced arrangers:** arranging involves a lot of work that needs hands but not ears: drafting from MIDI or stems, counting and fitting characters, transposing between instruments that sound in different octaves, rendering, comparing with the original. punchstrip hands roughly 80% of that mechanical work to the AI so that you can spend your time on the part that needs ears.
+- In both cases, the final judgement is yours.
+- **Signature sound:** when a score is finished, `score_finalize` adds a short lead-in "B–D–G–E" played by every track, plus silent end notes so that all players finish at the same moment. Skip them with `signature: false` and `end_padding: false`. The signature is there so that scores made with this tool can be recognised. **Using this tool to modify and distribute someone else's arrangement without permission is prohibited.**
+- **License:** punchstrip allows noncommercial use, modification and distribution under the PolyForm Noncommercial License 1.0.0 (SPDX `PolyForm-Noncommercial-1.0.0`, full text in `LICENSE`). Copies carry the licence and the line `Required Notice: Copyright noillthrive (https://github.com/noillthrive/punchstrip)`. The notes on the three files that follow MabiIcco's behaviour are in `NOTICE`. MabiIcco, its binaries and the game's sound files are not part of this repository.
 
 ## 도구 목록
 
@@ -163,26 +189,3 @@ punchstrip 0.7.1 = 브리지 0.7.0 + mabi-ear 0.5.0.
 | MabiIcco(코드와 바이너리 `MabiIcco.jar`, 함께 오는 라이브러리) | 원 제작자의 프로그램 | 본인 MabiIcco 설치(`MABIICCO_APP`), <https://github.com/fourthline/mmlTools> |
 | 마비노기 DLS 음원 | 게임 회사의 에셋 | 본인 마비노기 설치의 `mp3` 폴더(`MABI_DLS`) |
 | 곡·악보·렌더·스템 | 다른 사람의 작품 | 시험은 합성 데이터로 합니다 |
-
-## 라이선스
-
-punchstrip은 비상업 사용 및 수정, 배포를 허용하며 PolyForm Noncommercial License 1.0.0을 따릅니다. 전문은 `LICENSE`에 있습니다. 사본을 나눌 때는 라이선스와 함께 아래 한 줄을 그대로 넣어주세요.
-
-```text
-Required Notice: Copyright noillthrive (https://github.com/noillthrive/punchstrip)
-```
-
-MabiIcco의 동작을 그대로 따른 세 파일의 해당 부분은 원 제작자 たんらる 님의 작업을 따르며, 목록과 설명은 `NOTICE`에 있습니다. MabiIcco와 그 바이너리, 게임 음원은 이 저장소에 들어 있지 않고 각 권리자의 것입니다. 함께 들어 있는 제3자 라이브러리는 Gson뿐이며 `NOTICE`에 적혀 있습니다. JUnit·Hamcrest는 시험용 의존성으로 `lib/test/README.md`에 따라 따로 준비하세요.
-
-## 만든 사람
-- LT 크라우리제
-- Anthropic Claude
-
-## 스페셜 땡스
-- MabiIcco 원 제작자 たんらる 님 (https://github.com/fourthline/mmlTools)
-- MD 리세드리카 님 (https://www.mabicompose.com/)
-
-- LT Cooper
-- LT 베어섭난민
-- LT 남븝 님
-- 마도카 작곡 게시판의 존경하는 코더님들
