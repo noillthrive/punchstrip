@@ -127,7 +127,12 @@ cmd /c C:\mabi-mcp\smoke-test.cmd
 
 `--version`, 클래스·자료·DLS 찾기와 1초 메모리 렌더를 확인하는 `--selfcheck`, 악보 만들기 → 음 넣기 → `render_wav` → 저장으로 이어지는 MCP 대화 한 번을 차례로 돌린다. 기록과 렌더 WAV는 `C:\mabi-mcp\output\smoke\`에 남는다.
 
-- **기대 결과**: 마지막 줄이 `PASS  - logs in output\smoke`다. 성공과 실패는 이 마지막 줄로 판단한다. mabiicco 서버의 도구 수는 `[3/3]` 표의 3번 줄에 있고, 그 줄에 `39`가 들어 있다. PowerShell이 받은 출력에서 한글이 깨져 보이면 UTF-8 기록 파일 `C:\mabi-mcp\output\smoke\session.log`에서 `| 3 |`로 시작하는 줄을 읽는다.
+- **기대 결과**: 마지막 줄이 `PASS  - logs in output\smoke`다. 성공과 실패는 이 마지막 줄로 판단한다. mabiicco 서버의 도구 수는 `[3/3]` 표의 3번 줄에 있고, 그 줄에 `39`가 들어 있다. PowerShell이 받은 출력에서 한글이 깨져 보이면 UTF-8 기록 파일 `C:\mabi-mcp\output\smoke\session.log`에서 `| 3 |`로 시작하는 줄을 읽는다. Windows PowerShell 5.1에서는 `-Encoding UTF8`을 붙여야 한글이 바르게 읽힌다.
+
+```powershell
+Get-Content -Encoding UTF8 C:\mabi-mcp\output\smoke\session.log | Select-String '^\| 3 \|'
+```
+
 - **`[run-bridge] ERROR: MabiIcco is required: ...`**: `MABIICCO_APP`이 비었거나 그 폴더에 `MabiIcco.jar`·`lib\flatlaf\`·`lib\commons-compress\`가 없다. 1번으로 돌아가 폴더를 다시 확인한다.
 - **`[run-bridge] ERROR: java was not found`, `Java 17 or newer is required` 또는 `[run-bridge] ERROR: JAVA_HOME does not contain bin\java.exe`**: 2번으로 돌아간다. 마지막 메시지는 `JAVA_HOME`이 JDK 폴더가 아닌 곳을 가리킬 때 나온다.
 - **`[selfcheck] FAIL render: no Mabinogi DLS file found`**: 게임 음원을 못 찾은 것이다. 마비노기의 `mp3` 폴더를 찾아 `MABI_DLS`로 넣고 다시 돌린다.
@@ -158,6 +163,7 @@ cmd /c C:\mabi-mcp\analysis\run-ear.cmd --help
 C:\mabi-mcp\analysis\.venv\Scripts\python.exe -I -X utf8 C:\mabi-mcp\analysis\scripts\pipe_check.py C:\mabi-mcp\analysis\run-ear.cmd --out C:\mabi-mcp\output\ear_tools.json
 ```
 
+- `MABIEAR_PYTHON`을 쓴다면 `.venv`가 없으니, 같은 명령의 맨 앞 `.venv` python.exe 자리에 그 python.exe를 넣어 실행한다.
 - **`[run-ear] ERROR: Python 3.11 was not found`**: 종료 코드 9다. 3번으로 돌아간다.
 - **`[run-ear] ERROR: pip install -r requirements.txt failed`**: 대개 인터넷 문제다. 원인을 고치고 같은 명령을 다시 실행한다. 중간에 끊긴 환경은 다음 실행 때 다시 만든다.
 - 다 깔린 뒤에는 약 120 MB인 `C:\mabi-mcp\analysis\.cache\pip`을 지워도 된다. Python 3.11 환경에 `requirements.txt`를 깔아 두었다면 `MABIEAR_PYTHON=<그 python.exe>`로 `.venv` 없이 그 환경을 쓴다.
