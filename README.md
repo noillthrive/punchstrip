@@ -9,19 +9,6 @@ punchstrip 0.7.1 = 브리지 0.7.0 + mabi-ear 0.5.0.
 
 > **MabiIcco 필수.** punchstrip에는 MabiIcco의 코드가 포함되어 있지 않습니다. 설치된 MabiIcco의 엔진(`MabiIcco.jar`)을 불러 쓰며 **MabiIcco가 설치된 곳에서만 작동합니다.** MabiIcco는 원 제작자 たんらる 님의 프로그램이고 공식 배포처는 <https://github.com/fourthline/mmlTools> 입니다.
 
-## English summary
-
-**punchstrip** lets an AI model use **MabiIcco**, the MML editor for the game Mabinogi, through two MCP servers: **mabiicco** (Java, 39 tools: headless score editing, MML size and rank checks, reference-MIDI comparison, offline WAV rendering, ensemble finishing) and **mabi-ear** (Python 3.11, 18 tools: aligning and comparing renders with the original recording, stem extraction helpers, listening excerpts, a note-by-note check of the score's lead, agreement with the singing). Tell the AI how many players the score is for and whether to use 자브키엘, give it a MIDI of the song and the original recording (separated stems work even better), and get back an `.mmi` file for MabiIcco.
-
-- **It contains no MabiIcco code and requires an installed MabiIcco** (1.5.11 and 1.5.12 are confirmed to work). Get MabiIcco from its author: <https://github.com/fourthline/mmlTools>. Without it the bridge stops with a message saying so.
-- **Requirements:** Windows 10/11 x64, Java 17+, Python 3.11 with the `py` launcher, MabiIcco, Mabinogi installed (for the `MSXspirit0*.dls` sound banks), an MCP client (tested with Claude Code).
-- **Install:** give the Quick Start prompt below (퀵 스타트) to an agent that can run commands, or follow `INSTALL.md` yourself: unzip the latest `punchstrip-<version>-win.zip` to a writable ASCII path such as `C:\mabi-mcp`; set `MABIICCO_APP` to MabiIcco's `app` folder (and `MABI_DLS` to Mabinogi's `mp3` folder only if the sound banks are not found); run `smoke-test.cmd` (prints PASS/FAIL); run `analysisun-ear.cmd --help` once; register `bridgeun-bridge.cmd` and `analysisun-ear.cmd` as stdio MCP servers.
-- **For beginners:** if you have MabiIcco, a MIDI of a song you love and the original recording, ask your agent to make an ensemble score file (`.mmi`). We hope this tool gets you interested in composing.
-- **For experienced arrangers:** arranging involves a lot of work that needs hands but not ears: drafting from MIDI or stems, counting and fitting characters, transposing between instruments that sound in different octaves, rendering, comparing with the original. punchstrip hands roughly 80% of that mechanical work to the AI so that you can spend your time on the part that needs ears.
-- In both cases, the final judgement is yours.
-- **Signature sound:** when a score is finished, `score_finalize` adds a short lead-in "B–D–G–E" played by every track, plus silent end notes so that all players finish at the same moment. Skip them with `signature: false` and `end_padding: false`. The signature is there so that scores made with this tool can be recognised. **Using this tool to modify and distribute someone else's arrangement without permission is prohibited.**
-- **License:** punchstrip allows noncommercial use, modification and distribution under the PolyForm Noncommercial License 1.0.0 (SPDX `PolyForm-Noncommercial-1.0.0`, full text in `LICENSE`). Copies carry the licence and the line `Required Notice: Copyright noillthrive (https://github.com/noillthrive/punchstrip)`. The notes on the three files that follow MabiIcco's behaviour are in `NOTICE`. MabiIcco, its binaries and the game's sound files are not part of this repository.
-
 ## 퀵 스타트
 
 사용하는 에이전트(클로드 권장)에게 아래 문장을 붙여넣으세요.
@@ -49,6 +36,19 @@ punchstrip 0.7.1 = 브리지 0.7.0 + mabi-ear 0.5.0.
 - **Python 3.11**과 `py` 런처. mabi-ear의 패키지가 3.11에 맞춰 고정되어 있다.
 - **Windows 10/11** 64비트.
 - **MCP 클라이언트**.
+
+## English summary
+
+**punchstrip** lets an AI model use **MabiIcco**, the MML editor for the game Mabinogi, through two MCP servers: **mabiicco** (Java, 39 tools: headless score editing, MML size and rank checks, reference-MIDI comparison, offline WAV rendering, ensemble finishing) and **mabi-ear** (Python 3.11, 18 tools: aligning and comparing renders with the original recording, stem extraction helpers, listening excerpts, a note-by-note check of the score's lead, agreement with the singing). Tell the AI how many players the score is for and whether to use 자브키엘, give it a MIDI of the song and the original recording (separated stems work even better), and get back an `.mmi` file for MabiIcco.
+
+- **It contains no MabiIcco code and requires an installed MabiIcco** (1.5.11 and 1.5.12 are confirmed to work). Get MabiIcco from its author: <https://github.com/fourthline/mmlTools>. Without it the bridge stops with a message saying so.
+- **Requirements:** Windows 10/11 x64, Java 17+, Python 3.11 with the `py` launcher, MabiIcco, Mabinogi installed (for the `MSXspirit0*.dls` sound banks), an MCP client (tested with Claude Code).
+- **Install:** give the Quick Start prompt above (퀵 스타트) to an agent that can run commands, or follow `INSTALL.md` yourself: unzip the latest `punchstrip-<version>-win.zip` to a writable ASCII path such as `C:\mabi-mcp`; set `MABIICCO_APP` to MabiIcco's `app` folder (and `MABI_DLS` to Mabinogi's `mp3` folder only if the sound banks are not found); run `smoke-test.cmd` (prints PASS/FAIL); run `analysisun-ear.cmd --help` once; register `bridgeun-bridge.cmd` and `analysisun-ear.cmd` as stdio MCP servers.
+- **For beginners:** if you have MabiIcco, a MIDI of a song you love and the original recording, ask your agent to make an ensemble score file (`.mmi`). We hope this tool gets you interested in composing.
+- **For experienced arrangers:** arranging involves a lot of work that needs hands but not ears: drafting from MIDI or stems, counting and fitting characters, transposing between instruments that sound in different octaves, rendering, comparing with the original. punchstrip hands roughly 80% of that mechanical work to the AI so that you can spend your time on the part that needs ears.
+- In both cases, the final judgement is yours.
+- **Signature sound:** when a score is finished, `score_finalize` adds a short lead-in "B–D–G–E" played by every track, plus silent end notes so that all players finish at the same moment. Skip them with `signature: false` and `end_padding: false`. The signature is there so that scores made with this tool can be recognised. **Using this tool to modify and distribute someone else's arrangement without permission is prohibited.**
+- **License:** punchstrip allows noncommercial use, modification and distribution under the PolyForm Noncommercial License 1.0.0 (SPDX `PolyForm-Noncommercial-1.0.0`, full text in `LICENSE`). Copies carry the licence and the line `Required Notice: Copyright noillthrive (https://github.com/noillthrive/punchstrip)`. The notes on the three files that follow MabiIcco's behaviour are in `NOTICE`. MabiIcco, its binaries and the game's sound files are not part of this repository.
 
 ## 직접 설치하려면
 
