@@ -26,7 +26,7 @@ ant clean
 - `-Dmabiicco.app`를 주지 않으면 환경 변수 `MABIICCO_APP`을 쓴다. 둘 다 없거나 그 폴더에 `MabiIcco.jar`·`lib\flatlaf\`·`lib\commons-compress\`가 없으면 빌드가 "MabiIcco is required"로 멈추고 받는 곳을 알려 준다.
 - `jar`: `src-bridge/`를 컴파일해 `build/MabiIccoBridge.jar`(브리지 클래스와 자료 파일 3개 — `sounding_pitch.properties`, `drum27_keys.json`, `signature_home.properties` — 뿐, MabiIcco 엔진 없음)를 만들고 저장소 루트에 사본을 둔다(`bridge\run-bridge.cmd`·`smoke-test.cmd`가 루트의 jar를 쓴다. 릴리스 zip과 같은 배치).
 - `test`: 아래 6절(시험용 jar 두 개가 없으면 없는 파일 이름과 `lib/test/README.md`를 알리고 바로 멈춘다). `smoke`: `MABIICCO_APP`을 설치 폴더로 두고 `smoke-test.cmd`를 돌린다.
-- `dist`: `dist/punchstrip-0.7.0-win.zip`. zip 맨 위에 `MabiIccoBridge.jar`, `lib/gson/`, `lib/test/README.md`(시험용 jar 안내만), `bridge/`(실행기, 문서, 예 3쌍), `analysis/`(mabi-ear 소스·실행기·requirements·README, 드라이버 스크립트 2개), `smoke-test.cmd`, `README.md`, `INSTALL.md`, `BUILD.md`, `LICENSE`, `NOTICE`. 시험, MabiIcco, DLS 음원, 파이썬 환경은 넣지 않는다.
+- `dist`: `dist/punchstrip-0.7.1-win.zip`. zip 맨 위에 `MabiIccoBridge.jar`, `lib/gson/`, `lib/test/README.md`(시험용 jar 안내만), `bridge/`(실행기, 문서, 예 3쌍), `analysis/`(mabi-ear 소스·실행기·requirements·README, 드라이버 스크립트 2개), `smoke-test.cmd`, `README.md`, `INSTALL.md`, `BUILD.md`, `LICENSE`, `NOTICE`. 시험, MabiIcco, DLS 음원, 파이썬 환경은 넣지 않는다.
 - 실행할 때는 `MABIICCO_APP=<app>`를 준다. `run-bridge.cmd`가 `-cp "<app>\MabiIcco.jar;<app>\lib\flatlaf\*;<app>\lib\commons-compress\*;MabiIccoBridge.jar;lib\gson\*" mabibridge.Main`으로 띄운다.
 - 브리지는 MabiIcco의 JNA와 `LauncherSupport`를 쓰지 않는다(MabiIcco 창 실행기 전용). 브리지 0.6.1에서 시험 전체와 MCP 대화 한 번의 클래스 로드 기록(`-Xlog:class+load`)을 보았을 때 `com.sun.jna.*`·`LauncherSupport`는 한 번도 로드되지 않았다(그 뒤 판에서는 다시 재지 않았다).
 - 브리지 컴파일은 `release="17"` 대신 `source/target=17`을 쓴다(`--release`와 `--add-exports java.desktop/...`는 함께 쓸 수 없다).
@@ -89,7 +89,7 @@ mabi-ear(`analysis\run-ear.cmd`, `python -I -X utf8 run_ear.py`)의 기본 출�
 
 오디오 장치 없이 JDK 내장 신시사이저(Gervill)의 오프라인 스트림으로 WAV(44.1 kHz/16 bit/스테레오)와 메타 JSON(`mabibridge.render/1`)을 만든다. 코드는 `src-bridge/mabibridge/render/`. MabiIcco 창의 WAV 내보내기는 실제 재생 장치가 필요하고 실시간 속도라 쓰지 않는다.
 
-- 순서: DLS 읽기 → `MabiDLS.createSequenceOnSepChannel(score)`로 이벤트 → `new SoftSynthesizer().openStream(fmt, info)` → 악기 적재·채널 설정(MabiIcco의 동작을 따름, `LICENSE` 참고) → 이벤트를 `SoftShortMessage` + µs 시각으로 보냄 → 스트림을 300프레임(약 6.8 ms)씩 읽음 → WAV + 메타 JSON.
+- 순서: DLS 읽기 → `MabiDLS.createSequenceOnSepChannel(score)`로 이벤트 → `new SoftSynthesizer().openStream(fmt, info)` → 악기 적재·채널 설정(MabiIcco의 동작을 따름, `NOTICE` 참고) → 이벤트를 `SoftShortMessage` + µs 시각으로 보냄 → 스트림을 300프레임(약 6.8 ms)씩 읽음 → WAV + 메타 JSON.
 - 신시사이저 설정 키 14개를 모두 명시한다. 빠진 키는 Java Preferences(Windows는 HKCU 레지스트리)의 값이 덮어쓰기 때문이다. 그 노드는 읽기만 한다. `load default soundbank=false`(true면 `user.home/.gervill/`에 쓰는 경로가 있다).
 - 채널 16 이상 메시지를 시각과 함께 보낼 때 `ShortMessage`의 clone이 채널을 잃는 문제가 있어 `SoftShortMessage`를 쓴다(JUnit `RenderTest`가 잡는다).
 

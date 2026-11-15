@@ -91,7 +91,7 @@ py -3.11 --version
 
 `& { ... }`로 감싸서 `$ErrorActionPreference = 'Stop'`이 이 블록 안에서만 적용된다.
 
-- **기대 결과**: `v0.7.0 punchstrip-0.7.0-win.zip -> C:\mabi-mcp`처럼 버전과 폴더가 나오고 마지막 줄이 `True`. 폴더 맨 위에 `MabiIccoBridge.jar`, `smoke-test.cmd`, `bridge\`, `analysis\`, `lib\`가 생긴다.
+- **기대 결과**: `v0.7.1 punchstrip-0.7.1-win.zip -> C:\mabi-mcp`처럼 버전과 폴더가 나오고 마지막 줄이 `True`. 폴더 맨 위에 `MabiIccoBridge.jar`, `smoke-test.cmd`, `bridge\`, `analysis\`, `lib\`가 생긴다.
 - **`gh`가 있으면** 이렇게 받아도 된다.
 
 ```powershell

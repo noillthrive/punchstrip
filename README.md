@@ -5,7 +5,7 @@ AI 모델이 **MabiIcco**(마비노기 MML 편집기)를 쓸 수 있게 하는 M
 - **mabiicco** (Java, 도구 39개) — MabiIcco를 창 없이 움직이는 **브리지**. 악보(.mmi) 만들기·열기·저장, 트랙·음 편집, MML 글자 수·랭크 한도 확인, 참고 MIDI 읽기와 비교, 오프라인 WAV 렌더, 합주용 마무리(조율 시그니처·끝 맞춤).
 - **mabi-ear** (Python, 도구 18개) — 렌더한 소리와 원곡 녹음을 비교하는 **귀**. 정렬, 크로마, 온셋, 풍성함, 밸런스, 보고서, 스템에서 타격·음 뽑기, 듣기용 발췌, 악보 리드의 음 단위 원곡 대조, 노래와의 일치.
 
-punchstrip 0.7.0 = 브리지 0.7.0 + mabi-ear 0.5.0.
+punchstrip 0.7.1 = 브리지 0.7.0 + mabi-ear 0.5.0.
 
 > **MabiIcco가 꼭 있어야 한다.** punchstrip에는 MabiIcco의 코드가 한 줄도 들어 있지 않다. 설치된 MabiIcco의 엔진(`MabiIcco.jar`)을 불러 쓰는 도구라서 **MabiIcco가 설치된 곳에서만 돈다.** MabiIcco는 원 제작자 たんらる 님의 프로그램이고 공식 배포처는 <https://github.com/fourthline/mmlTools> 이다.
 
@@ -154,14 +154,21 @@ punchstrip 0.7.0 = 브리지 0.7.0 + mabi-ear 0.5.0.
 - **Install:** give the Quick Start prompt above to an agent that can run commands, or follow `INSTALL.md` yourself: unzip the latest `punchstrip-<version>-win.zip` to a writable ASCII path such as `C:\mabi-mcp`; set `MABIICCO_APP` to MabiIcco's `app` folder (and `MABI_DLS` to Mabinogi's `mp3` folder only if the sound banks are not found); run `smoke-test.cmd` (prints PASS/FAIL); run `analysis\run-ear.cmd --help` once; register `bridge\run-bridge.cmd` and `analysis\run-ear.cmd` as stdio MCP servers.
 - **What it is for:** it automates roughly the mechanical 80 % of arranging (drafting from MIDI or stems, counting and fitting characters, transposing between instruments, rendering, comparing) so that arrangers can spend their time on the part that needs ears. The final judgement is a person listening.
 - **Signature:** `score_finalize` (and only it) adds a short lead-in "B–D–G–E" that doubles as the ensemble tuning passage, plus silent end notes so that all players finish together. Skip it with `signature: false`. It marks scores made with this tool; if your score is derived from someone else's arrangement, please credit the original arranger.
-- **License:** MIT (`LICENSE`), with notes on the three files that follow MabiIcco's behaviour. MabiIcco, its binaries and the game's sound files are not part of this repository.
+- **License:** PolyForm Noncommercial License 1.0.0 (SPDX `PolyForm-Noncommercial-1.0.0`, full text in `LICENSE`): anyone may use, modify and share punchstrip for noncommercial purposes; copies carry the licence and the line `Required Notice: Copyright noillthrive (https://github.com/noillthrive/punchstrip)`. The notes on the three files that follow MabiIcco's behaviour are in `NOTICE`. MabiIcco, its binaries and the game's sound files are not part of this repository.
 
 ## 라이선스
 
-라이선스는 MIT이며 자세한 내용은 `LICENSE`에 있다. MabiIcco의 동작을 그대로 따른 세 파일의 해당 부분은 원 제작자 たんらる 님의 작업을 따르며, 목록과 설명도 `LICENSE`에 있다. MabiIcco와 그 바이너리, 게임 음원은 이 저장소에 들어 있지 않고 각 권리자의 것이다. 함께 들어 있는 제3자 라이브러리는 Gson뿐이며 `NOTICE`에 적혀 있다. JUnit·Hamcrest는 시험용 의존성으로 `lib/test/README.md`에 따라 따로 준비한다.
+punchstrip은 PolyForm Noncommercial License 1.0.0을 따른다. 전문은 `LICENSE`에 있다. 비상업적 목적이라면 누구나 쓰고, 고치고, 나눌 수 있다. 사본을 나눌 때는 라이선스와 함께 아래 한 줄을 그대로 넣는다.
+
+```text
+Required Notice: Copyright noillthrive (https://github.com/noillthrive/punchstrip)
+```
+
+MabiIcco의 동작을 그대로 따른 세 파일의 해당 부분은 원 제작자 たんらる 님의 작업을 따르며, 목록과 설명은 `NOTICE`에 있다. MabiIcco와 그 바이너리, 게임 음원은 이 저장소에 들어 있지 않고 각 권리자의 것이다. 함께 들어 있는 제3자 라이브러리는 Gson뿐이며 `NOTICE`에 적혀 있다. JUnit·Hamcrest는 시험용 의존성으로 `lib/test/README.md`에 따라 따로 준비한다.
 
 ## 만든 사람
 - LT 크라우리제
+- Claude (Anthropic)
 
 ## 스페셜 땡스
 - MabiIcco 원 제작자 たんらる 님 (https://github.com/fourthline/mmlTools)

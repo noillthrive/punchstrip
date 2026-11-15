@@ -1,4 +1,34 @@
-punchstrip - third-party notices
+punchstrip - notices
+
+Required Notice: Copyright noillthrive (https://github.com/noillthrive/punchstrip)
+
+punchstrip is licensed under the PolyForm Noncommercial License 1.0.0 (SPDX: PolyForm-Noncommercial-1.0.0);
+the full text is in LICENSE.
+
+================================================================================
+= MabiIcco and the files that follow MabiIcco's own behaviour
+================================================================================
+MabiIcco itself is NOT part of this repository. punchstrip contains none of MabiIcco's code and works only with an
+installed MabiIcco. MabiIcco / mmlTools is the work of its author, たんらる (https://github.com/fourthline/mmlTools);
+MabiIcco, its binaries (MabiIcco.jar and the libraries shipped with it) and the Mabinogi game's sound files (DLS) are
+not distributed here and belong to their respective owners.
+
+Files that follow MabiIcco's own behaviour
+
+Three source files re-implement parts of MabiIcco's behaviour so that the bridge, which runs without MabiIcco's
+window, gives the same results as the application. Those portions follow the work of MabiIcco's author, たんらる
+(https://github.com/fourthline/mmlTools); they are credited here and remain the author's work:
+
+- src-bridge/mabibridge/render/OfflineRenderer.java
+    the channel set-up of the application's synthesizer start-up (initializeSynthesizer: program change, CC91,
+    CC64) and its per-track control (updateMidiControl: pan, volume, program change)
+- src-bridge/mabibridge/engine/InstrumentTable.java
+    the calculation of InstClass.logicalProgramNum(bank, program)
+- src-bridge/mabibridge/engine/BridgeEngine.java
+    the application's default static settings (optimizer level, MML options, the tempoAllowChordPart rule)
+
+All other files call MabiIcco through its public classes at run time, from the user's own MabiIcco install, without
+copying its code.
 
 ================================================================================
 = Gson 2.14.0  (lib/gson/gson-2.14.0.jar; the only third-party file included, used by the mabiicco bridge)
