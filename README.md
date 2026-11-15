@@ -101,10 +101,7 @@ MabiIcco의 동작을 그대로 따른 세 파일의 해당 부분은 원 제작
 
 - **It contains no MabiIcco code and requires an installed MabiIcco** (1.5.11 and 1.5.12 are confirmed to work). Get MabiIcco from its author: <https://github.com/fourthline/mmlTools>. Without it the bridge stops with a message saying so.
 - **Requirements:** Windows 10/11 x64, Java 17+, Python 3.11 with the `py` launcher, MabiIcco, Mabinogi installed (for the `MSXspirit0*.dls` sound banks), an MCP client (tested with Claude Code).
-- **Install:** give the Quick Start prompt above (퀵 스타트) to an agent that can run commands, or follow `INSTALL.md` yourself: unzip the latest `punchstrip-<version>-win.zip` to a writable ASCII path such as `C:\mabi-mcp`; set `MABIICCO_APP` to MabiIcco's `app` folder (and `MABI_DLS` to Mabinogi's `mp3` folder only if the sound banks are not found); run `smoke-test.cmd` (prints PASS/FAIL); run `analysis
-un-ear.cmd --help` once; register `bridge
-un-bridge.cmd` and `analysis
-un-ear.cmd` as stdio MCP servers.
+- **Install:** give the Quick Start prompt above (퀵 스타트) to an agent that can run commands, or follow `INSTALL.md` yourself: unzip the latest `punchstrip-<version>-win.zip` to a writable ASCII path such as `C:\mabi-mcp`; set `MABIICCO_APP` to MabiIcco's `app` folder (and `MABI_DLS` to Mabinogi's `mp3` folder only if the sound banks are not found); run `smoke-test.cmd` (prints PASS/FAIL); run `analysis\run-ear.cmd --help` once; register `bridge\run-bridge.cmd` and `analysis\run-ear.cmd` as stdio MCP servers.
 - **For beginners:** if you have MabiIcco, a MIDI of a song you love and the original recording, ask your agent to make an ensemble score file (`.mmi`). We hope this tool gets you interested in composing.
 - **For experienced arrangers:** arranging involves a lot of work that needs hands but not ears: drafting from MIDI or stems, counting and fitting characters, transposing between instruments that sound in different octaves, rendering, comparing with the original. punchstrip hands roughly 80% of that mechanical work to the AI so that you can spend your time on the part that needs ears.
 - In both cases, the final judgement is yours.
