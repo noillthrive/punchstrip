@@ -1,0 +1,501 @@
+# 서버 mabiicco-bridge 0.7.0, 프로토콜 2025-06-18
+=== [1] project_new — ok
+{
+  "title": "mixed meter",
+  "author": "",
+  "time_signature": "4/4",
+  "time_signatures": [
+    {
+      "tick": 0,
+      "measure": 1,
+      "signature": "4/4"
+    },
+    {
+      "tick": 768,
+      "measure": 3,
+      "signature": "3/4"
+    },
+    {
+      "tick": 1056,
+      "measure": 4,
+      "signature": "5/8"
+    },
+    {
+      "tick": 1296,
+      "measure": 5,
+      "signature": "4/4"
+    }
+  ],
+  "tempos": [
+    {
+      "tick": 0,
+      "pos": "1:1:0",
+      "bpm": 100
+    }
+  ],
+  "total_measures": 0,
+  "total_ticks": 0,
+  "total_sec": 0.0,
+  "tracks": [],
+  "source": null,
+  "dirty": false,
+  "snapshots": 0,
+  "song_rule": "song_excluded",
+  "base_time": "4/4",
+  "time_signature_overridden": false,
+  "tempo_at_start": 100,
+  "tempo_at_start_default": false,
+  "reference": {
+    "loaded": false
+  },
+  "mapping": {},
+  "compare_wired": true,
+  "dls_loaded": false
+}
+
+=== [2] track_add — ok
+{
+  "ok": true,
+  "track": 1,
+  "summary": {
+    "track": 1,
+    "name": "flute",
+    "program": 5,
+    "instrument_name": "플룻",
+    "instrument_type": "N",
+    "song_program": -1,
+    "song_program_name": "없음",
+    "panpot": 64,
+    "volume": 100,
+    "note_counts": {
+      "melody": 0,
+      "chord1": 0,
+      "chord2": 0,
+      "song": 0
+    },
+    "allowed_parts": [
+      "melody",
+      "chord1",
+      "chord2"
+    ],
+    "song_rule": "song_excluded",
+    "sounding": "적은 대로",
+    "song_sounding": null,
+    "velocity_rule": "x8",
+    "velocity_max": 15
+  }
+}
+
+=== [3] score_put_notes — ok
+{
+  "ok": true,
+  "track": 1,
+  "parts": [
+    "melody"
+  ],
+  "changed_measures": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "stats": {
+    "track": 1,
+    "name": "flute",
+    "program": 5,
+    "chars": {
+      "melody": 18,
+      "chord1": 0,
+      "chord2": 0,
+      "song": 0
+    },
+    "limits": {
+      "song_excluded": {
+        "melody": 1600,
+        "chord1": 1200,
+        "chord2": 900,
+        "over": [],
+        "song_not_allowed": false
+      },
+      "song_included": {
+        "melody": 1200,
+        "chord1": 800,
+        "chord2": 500,
+        "song": 1200,
+        "over": []
+      }
+    },
+    "default_rule": "song_excluded",
+    "rank_text": "Rank 연습 ( 18, 0, 0 )",
+    "play_time_sec": 10.5,
+    "sounding": "적은 대로",
+    "sounding_pitch_min": 67,
+    "sounding_name_min": "G4",
+    "sounding_pitch_max": 74,
+    "sounding_name_max": "D5",
+    "silent_notes": 0
+  },
+  "compare_summary": null,
+  "compare_summary_note": "참조 미로드",
+  "added": 5,
+  "deleted": 0,
+  "aligned": [],
+  "affected": [],
+  "warnings": [],
+  "pitch_mode": "written",
+  "pitch_converted": 0
+}
+
+=== [4] project_set_tempos — ok
+{
+  "title": "mixed meter",
+  "author": "",
+  "time_signature": "4/4",
+  "time_signatures": [
+    {
+      "tick": 0,
+      "measure": 1,
+      "signature": "4/4"
+    },
+    {
+      "tick": 768,
+      "measure": 3,
+      "signature": "3/4"
+    },
+    {
+      "tick": 1056,
+      "measure": 4,
+      "signature": "5/8"
+    },
+    {
+      "tick": 1296,
+      "measure": 5,
+      "signature": "4/4"
+    }
+  ],
+  "tempos": [
+    {
+      "tick": 0,
+      "pos": "1:1:0",
+      "bpm": 100
+    },
+    {
+      "tick": 768,
+      "pos": "3:1:0",
+      "bpm": 90
+    },
+    {
+      "tick": 1296,
+      "pos": "5:1:0",
+      "bpm": 120
+    }
+  ],
+  "total_measures": 5,
+  "total_ticks": 1680,
+  "total_sec": 10.467,
+  "tracks": [
+    {
+      "track": 1,
+      "name": "flute",
+      "program": 5,
+      "instrument_name": "플룻",
+      "instrument_type": "N",
+      "song_program": -1,
+      "song_program_name": "없음",
+      "panpot": 64,
+      "volume": 100,
+      "note_counts": {
+        "melody": 5,
+        "chord1": 0,
+        "chord2": 0,
+        "song": 0
+      },
+      "allowed_parts": [
+        "melody",
+        "chord1",
+        "chord2"
+      ],
+      "song_rule": "song_excluded",
+      "sounding": "적은 대로",
+      "song_sounding": null,
+      "velocity_rule": "x8",
+      "velocity_max": 15
+    }
+  ],
+  "source": null,
+  "dirty": true,
+  "snapshots": 0,
+  "song_rule": "song_excluded",
+  "base_time": "4/4",
+  "time_signature_overridden": false,
+  "tempo_at_start": 100,
+  "tempo_at_start_default": false,
+  "reference": {
+    "loaded": false
+  },
+  "mapping": {},
+  "compare_wired": true,
+  "dls_loaded": false
+}
+
+=== [5] project_info — ok
+{
+  "title": "mixed meter",
+  "author": "",
+  "time_signature": "4/4",
+  "time_signatures": [
+    {
+      "tick": 0,
+      "measure": 1,
+      "signature": "4/4"
+    },
+    {
+      "tick": 768,
+      "measure": 3,
+      "signature": "3/4"
+    },
+    {
+      "tick": 1056,
+      "measure": 4,
+      "signature": "5/8"
+    },
+    {
+      "tick": 1296,
+      "measure": 5,
+      "signature": "4/4"
+    }
+  ],
+  "tempos": [
+    {
+      "tick": 0,
+      "pos": "1:1:0",
+      "bpm": 100
+    },
+    {
+      "tick": 768,
+      "pos": "3:1:0",
+      "bpm": 90
+    },
+    {
+      "tick": 1296,
+      "pos": "5:1:0",
+      "bpm": 120
+    }
+  ],
+  "total_measures": 5,
+  "total_ticks": 1680,
+  "total_sec": 10.467,
+  "tracks": [
+    {
+      "track": 1,
+      "name": "flute",
+      "program": 5,
+      "instrument_name": "플룻",
+      "instrument_type": "N",
+      "song_program": -1,
+      "song_program_name": "없음",
+      "panpot": 64,
+      "volume": 100,
+      "note_counts": {
+        "melody": 5,
+        "chord1": 0,
+        "chord2": 0,
+        "song": 0
+      },
+      "allowed_parts": [
+        "melody",
+        "chord1",
+        "chord2"
+      ],
+      "song_rule": "song_excluded",
+      "sounding": "적은 대로",
+      "song_sounding": null,
+      "velocity_rule": "x8",
+      "velocity_max": 15
+    }
+  ],
+  "source": null,
+  "dirty": true,
+  "snapshots": 0,
+  "song_rule": "song_excluded",
+  "base_time": "4/4",
+  "time_signature_overridden": false,
+  "tempo_at_start": 100,
+  "tempo_at_start_default": false,
+  "reference": {
+    "loaded": false
+  },
+  "mapping": {},
+  "compare_wired": true,
+  "dls_loaded": false
+}
+
+=== [6] score_notes — ok
+{
+  "track": 1,
+  "part": "melody",
+  "range": [
+    1,
+    5
+  ],
+  "count": 5,
+  "notes": [
+    {
+      "tick": 0,
+      "pos": "1:1:0",
+      "len": 192,
+      "pitch": 67,
+      "name": "G4",
+      "vel": 8,
+      "sounding_pitch": 67,
+      "sounding_name": "G4",
+      "silent": false
+    },
+    {
+      "tick": 384,
+      "pos": "2:1:0",
+      "len": 384,
+      "pitch": 69,
+      "name": "A4",
+      "vel": 8,
+      "sounding_pitch": 69,
+      "sounding_name": "A4",
+      "silent": false
+    },
+    {
+      "tick": 768,
+      "pos": "3:1:0",
+      "len": 288,
+      "pitch": 71,
+      "name": "B4",
+      "vel": 8,
+      "sounding_pitch": 71,
+      "sounding_name": "B4",
+      "silent": false
+    },
+    {
+      "tick": 1056,
+      "pos": "4:1:0",
+      "len": 48,
+      "pitch": 72,
+      "name": "C5",
+      "vel": 8,
+      "sounding_pitch": 72,
+      "sounding_name": "C5",
+      "silent": false
+    },
+    {
+      "tick": 1296,
+      "pos": "5:1:0",
+      "len": 384,
+      "pitch": 74,
+      "name": "D5",
+      "vel": 8,
+      "sounding_pitch": 74,
+      "sounding_name": "D5",
+      "silent": false
+    }
+  ]
+}
+
+=== [7] score_mml — ok
+{
+  "track": 1,
+  "name": "flute",
+  "mml": "MML@t100l2gra1t90b.>c8rt120d1,,;",
+  "parts": {
+    "melody": "t100l2gra1t90b.>c8rt120d1",
+    "chord1": "",
+    "chord2": "",
+    "song": ""
+  },
+  "chars": {
+    "melody": 25,
+    "chord1": 0,
+    "chord2": 0,
+    "song": 0
+  }
+}
+
+=== [8] score_stats — ok
+{
+  "track": 1,
+  "name": "flute",
+  "program": 5,
+  "chars": {
+    "melody": 25,
+    "chord1": 0,
+    "chord2": 0,
+    "song": 0
+  },
+  "limits": {
+    "song_excluded": {
+      "melody": 1600,
+      "chord1": 1200,
+      "chord2": 900,
+      "over": [],
+      "song_not_allowed": false
+    },
+    "song_included": {
+      "melody": 1200,
+      "chord1": 800,
+      "chord2": 500,
+      "song": 1200,
+      "over": []
+    }
+  },
+  "default_rule": "song_excluded",
+  "rank_text": "Rank 연습 ( 25, 0, 0 )",
+  "play_time_sec": 10.466666666666667,
+  "sounding": "적은 대로",
+  "sounding_pitch_min": 67,
+  "sounding_name_min": "G4",
+  "sounding_pitch_max": 74,
+  "sounding_name_max": "D5",
+  "silent_notes": 0,
+  "rank_limits": {
+    "rank": "1",
+    "rank_key": "RANK_1",
+    "song_rule": "song_excluded",
+    "parts": {
+      "melody": {
+        "chars": 25,
+        "limit": 1600,
+        "over_by": 0
+      },
+      "chord1": {
+        "chars": 0,
+        "limit": 1200,
+        "over_by": 0
+      },
+      "chord2": {
+        "chars": 0,
+        "limit": 900,
+        "over_by": 0
+      },
+      "song": {
+        "chars": 0,
+        "limit": null,
+        "over_by": 0
+      }
+    },
+    "over": [],
+    "fits": true,
+    "song_not_allowed": false
+  },
+  "warnings": [],
+  "score_warnings": [
+    {
+      "code": "tempo_end_differs",
+      "first_bpm": 100,
+      "last_bpm": 120,
+      "last_tick": 1296,
+      "last_pos": "5:1:0",
+      "message": "tempo_end_differs: 마지막 템포 t120(5:1:0)가 처음 템포 t100와 다름. 장을 이어 연주하면 다음 장 시작 템포를 확인할 것"
+    }
+  ]
+}
+
+요청 8개, 오류 0개
+# 서버 종료 코드 0, 서버 stderr: C:\mabi-mcp\exout\timesig_tempo.out.txt.err

@@ -1,0 +1,464 @@
+# 서버 mabiicco-bridge 0.7.0, 프로토콜 2025-06-18
+=== [1] project_new — ok
+{
+  "title": "quickstart",
+  "author": "",
+  "time_signature": "4/4",
+  "time_signatures": [
+    {
+      "tick": 0,
+      "measure": 1,
+      "signature": "4/4"
+    }
+  ],
+  "tempos": [],
+  "total_measures": 0,
+  "total_ticks": 0,
+  "total_sec": 0.0,
+  "tracks": [],
+  "source": null,
+  "dirty": false,
+  "snapshots": 0,
+  "song_rule": "song_excluded",
+  "base_time": "4/4",
+  "time_signature_overridden": false,
+  "tempo_at_start": 120,
+  "tempo_at_start_default": true,
+  "reference": {
+    "loaded": false
+  },
+  "mapping": {},
+  "compare_wired": true,
+  "dls_loaded": false
+}
+
+=== [2] track_add — ok
+{
+  "ok": true,
+  "track": 1,
+  "summary": {
+    "track": 1,
+    "name": "piano",
+    "program": 21,
+    "instrument_name": "피아노",
+    "instrument_type": "N",
+    "song_program": -1,
+    "song_program_name": "없음",
+    "panpot": 64,
+    "volume": 100,
+    "note_counts": {
+      "melody": 0,
+      "chord1": 0,
+      "chord2": 0,
+      "song": 0
+    },
+    "allowed_parts": [
+      "melody",
+      "chord1",
+      "chord2"
+    ],
+    "song_rule": "song_excluded",
+    "sounding": "+1옥타브",
+    "song_sounding": null,
+    "velocity_rule": "x8",
+    "velocity_max": 15
+  }
+}
+
+=== [3] score_put_notes — ok
+{
+  "ok": true,
+  "track": 1,
+  "parts": [
+    "melody"
+  ],
+  "changed_measures": [
+    1,
+    2
+  ],
+  "stats": {
+    "track": 1,
+    "name": "piano",
+    "program": 21,
+    "chars": {
+      "melody": 13,
+      "chord1": 0,
+      "chord2": 0,
+      "song": 0
+    },
+    "limits": {
+      "song_excluded": {
+        "melody": 1600,
+        "chord1": 1200,
+        "chord2": 900,
+        "over": [],
+        "song_not_allowed": false
+      },
+      "song_included": {
+        "melody": 1200,
+        "chord1": 800,
+        "chord2": 500,
+        "song": 1200,
+        "over": []
+      }
+    },
+    "default_rule": "song_excluded",
+    "rank_text": "Rank 연습 ( 13, 0, 0 )",
+    "play_time_sec": 4.0,
+    "sounding": "+1옥타브",
+    "sounding_pitch_min": 72,
+    "sounding_name_min": "C5",
+    "sounding_pitch_max": 84,
+    "sounding_name_max": "C6",
+    "silent_notes": 0
+  },
+  "compare_summary": null,
+  "compare_summary_note": "참조 미로드",
+  "added": 9,
+  "deleted": 0,
+  "aligned": [],
+  "affected": [],
+  "warnings": [],
+  "pitch_mode": "written",
+  "pitch_converted": 0
+}
+
+=== [4] score_put_notes — ok
+{
+  "ok": true,
+  "track": 1,
+  "parts": [
+    "chord1"
+  ],
+  "changed_measures": [
+    1,
+    2
+  ],
+  "stats": {
+    "track": 1,
+    "name": "piano",
+    "program": 21,
+    "chars": {
+      "melody": 13,
+      "chord1": 7,
+      "chord2": 0,
+      "song": 0
+    },
+    "limits": {
+      "song_excluded": {
+        "melody": 1600,
+        "chord1": 1200,
+        "chord2": 900,
+        "over": [],
+        "song_not_allowed": false
+      },
+      "song_included": {
+        "melody": 1200,
+        "chord1": 800,
+        "chord2": 500,
+        "song": 1200,
+        "over": []
+      }
+    },
+    "default_rule": "song_excluded",
+    "rank_text": "Rank 연습 ( 13, 7, 0 )",
+    "play_time_sec": 4.0,
+    "sounding": "+1옥타브",
+    "sounding_pitch_min": 64,
+    "sounding_name_min": "E4",
+    "sounding_pitch_max": 84,
+    "sounding_name_max": "C6",
+    "silent_notes": 0
+  },
+  "compare_summary": null,
+  "compare_summary_note": "참조 미로드",
+  "added": 3,
+  "deleted": 0,
+  "aligned": [],
+  "affected": [],
+  "warnings": [],
+  "pitch_mode": "written",
+  "pitch_converted": 0
+}
+
+=== [5] score_notes — ok
+{
+  "track": 1,
+  "part": "all",
+  "range": [
+    1,
+    2
+  ],
+  "count": 12,
+  "parts": {
+    "melody": [
+      {
+        "tick": 0,
+        "pos": "1:1:0",
+        "len": 48,
+        "pitch": 60,
+        "name": "C4",
+        "vel": 8,
+        "sounding_pitch": 72,
+        "sounding_name": "C5",
+        "silent": false
+      },
+      {
+        "tick": 48,
+        "pos": "1:1:48",
+        "len": 48,
+        "pitch": 62,
+        "name": "D4",
+        "vel": 8,
+        "sounding_pitch": 74,
+        "sounding_name": "D5",
+        "silent": false
+      },
+      {
+        "tick": 96,
+        "pos": "1:2:0",
+        "len": 48,
+        "pitch": 64,
+        "name": "E4",
+        "vel": 8,
+        "sounding_pitch": 76,
+        "sounding_name": "E5",
+        "silent": false
+      },
+      {
+        "tick": 144,
+        "pos": "1:2:48",
+        "len": 48,
+        "pitch": 65,
+        "name": "F4",
+        "vel": 8,
+        "sounding_pitch": 77,
+        "sounding_name": "F5",
+        "silent": false
+      },
+      {
+        "tick": 192,
+        "pos": "1:3:0",
+        "len": 48,
+        "pitch": 67,
+        "name": "G4",
+        "vel": 8,
+        "sounding_pitch": 79,
+        "sounding_name": "G5",
+        "silent": false
+      },
+      {
+        "tick": 240,
+        "pos": "1:3:48",
+        "len": 48,
+        "pitch": 69,
+        "name": "A4",
+        "vel": 8,
+        "sounding_pitch": 81,
+        "sounding_name": "A5",
+        "silent": false
+      },
+      {
+        "tick": 288,
+        "pos": "1:4:0",
+        "len": 48,
+        "pitch": 71,
+        "name": "B4",
+        "vel": 8,
+        "sounding_pitch": 83,
+        "sounding_name": "B5",
+        "silent": false
+      },
+      {
+        "tick": 336,
+        "pos": "1:4:48",
+        "len": 48,
+        "pitch": 72,
+        "name": "C5",
+        "vel": 8,
+        "sounding_pitch": 84,
+        "sounding_name": "C6",
+        "silent": false
+      },
+      {
+        "tick": 384,
+        "pos": "2:1:0",
+        "len": 384,
+        "pitch": 72,
+        "name": "C5",
+        "vel": 8,
+        "sounding_pitch": 84,
+        "sounding_name": "C6",
+        "silent": false
+      }
+    ],
+    "chord1": [
+      {
+        "tick": 0,
+        "pos": "1:1:0",
+        "len": 192,
+        "pitch": 52,
+        "name": "E3",
+        "vel": 8,
+        "sounding_pitch": 64,
+        "sounding_name": "E4",
+        "silent": false
+      },
+      {
+        "tick": 192,
+        "pos": "1:3:0",
+        "len": 192,
+        "pitch": 53,
+        "name": "F3",
+        "vel": 8,
+        "sounding_pitch": 65,
+        "sounding_name": "F4",
+        "silent": false
+      },
+      {
+        "tick": 384,
+        "pos": "2:1:0",
+        "len": 384,
+        "pitch": 52,
+        "name": "E3",
+        "vel": 8,
+        "sounding_pitch": 64,
+        "sounding_name": "E4",
+        "silent": false
+      }
+    ],
+    "chord2": []
+  }
+}
+
+=== [6] score_mml — ok
+{
+  "track": 1,
+  "name": "piano",
+  "mml": "MML@l8cdefgab>cc1,l2<efe1,;",
+  "parts": {
+    "melody": "l8cdefgab>cc1",
+    "chord1": "l2<efe1",
+    "chord2": "",
+    "song": ""
+  },
+  "chars": {
+    "melody": 13,
+    "chord1": 7,
+    "chord2": 0,
+    "song": 0
+  }
+}
+
+=== [7] score_stats — ok
+{
+  "track": 1,
+  "name": "piano",
+  "program": 21,
+  "chars": {
+    "melody": 13,
+    "chord1": 7,
+    "chord2": 0,
+    "song": 0
+  },
+  "limits": {
+    "song_excluded": {
+      "melody": 1600,
+      "chord1": 1200,
+      "chord2": 900,
+      "over": [],
+      "song_not_allowed": false
+    },
+    "song_included": {
+      "melody": 1200,
+      "chord1": 800,
+      "chord2": 500,
+      "song": 1200,
+      "over": []
+    }
+  },
+  "default_rule": "song_excluded",
+  "rank_text": "Rank 연습 ( 13, 7, 0 )",
+  "play_time_sec": 4.0,
+  "sounding": "+1옥타브",
+  "sounding_pitch_min": 64,
+  "sounding_name_min": "E4",
+  "sounding_pitch_max": 84,
+  "sounding_name_max": "C6",
+  "silent_notes": 0,
+  "rank_limits": {
+    "rank": "1",
+    "rank_key": "RANK_1",
+    "song_rule": "song_excluded",
+    "parts": {
+      "melody": {
+        "chars": 13,
+        "limit": 1600,
+        "over_by": 0
+      },
+      "chord1": {
+        "chars": 7,
+        "limit": 1200,
+        "over_by": 0
+      },
+      "chord2": {
+        "chars": 0,
+        "limit": 900,
+        "over_by": 0
+      },
+      "song": {
+        "chars": 0,
+        "limit": null,
+        "over_by": 0
+      }
+    },
+    "over": [],
+    "fits": true,
+    "song_not_allowed": false
+  },
+  "warnings": [],
+  "score_warnings": []
+}
+
+=== [8] render_wav — ok
+{
+  "ok": true,
+  "split": "none",
+  "out_dir": "C:/mabi-mcp/output/render",
+  "range": {
+    "from_measure": 1,
+    "to_measure": 2,
+    "from_tick": 0,
+    "to_tick": 768,
+    "note_rule": "start_in_range",
+    "note_start_offset_tick": 1,
+    "track_mute_ignored": true,
+    "whole_song": true,
+    "range_sec": 4.0
+  },
+  "measures": 2,
+  "files": [
+    {
+      "path": "C:/mabi-mcp/output/render/quickstart.wav",
+      "tracks": [
+        1
+      ],
+      "parts": "all",
+      "meta_path": "C:/mabi-mcp/output/render/quickstart.json",
+      "duration_sec": 5.0884,
+      "peak_dbfs": -17.31,
+      "rms_dbfs": -33.98,
+      "tail_sec_actual": 1.0884,
+      "notes": 12,
+      "render_ms": 94
+    }
+  ],
+  "skipped": [],
+  "warnings": [],
+  "render_ms": 719,
+  "audio_sec": 5.088,
+  "speed_x_realtime": 7.1
+}
+
+요청 8개, 오류 0개
+# 서버 종료 코드 0, 서버 stderr: C:\mabi-mcp\exout\quickstart.out.txt.err

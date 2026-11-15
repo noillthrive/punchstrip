@@ -1,0 +1,28 @@
+punchstrip - third-party notices
+
+================================================================================
+= Gson 2.14.0  (lib/gson/gson-2.14.0.jar; the only third-party file included, used by the mabiicco bridge)
+================================================================================
+Copyright 2008 Google Inc.
+Licensed under the Apache License, Version 2.0; a copy is in lib/gson/LICENSE and at
+http://www.apache.org/licenses/LICENSE-2.0 .
+Source: https://github.com/google/gson (artifact com.google.code.gson:gson:2.14.0 from Maven Central).
+
+================================================================================
+= Needed only to run the tests (NOT included; each developer places them in lib/test/)
+================================================================================
+- JUnit 4.12 (junit:junit:4.12, Eclipse Public License 1.0) and Hamcrest Core 1.3 (org.hamcrest:hamcrest-core:1.3,
+  BSD License). Neither is part of this repository or of the release zip; lib/test/README.md says where to get
+  them and gives the SHA-256 of the copies the tests were run with.
+
+================================================================================
+= Used at run time from the user's own MabiIcco install (not part of this repository)
+================================================================================
+- MabiIcco.jar (MabiIcco / mmlTools by たんらる, https://github.com/fourthline/mmlTools)
+- FlatLaf and Apache Commons Compress, as shipped with MabiIcco under their own licenses
+
+================================================================================
+= Installed by mabi-ear's first run from PyPI (not part of this repository)
+================================================================================
+The pinned packages in analysis/requirements.txt (among them mcp, numpy, scipy, librosa, soundfile, numba,
+scikit-learn) are downloaded by pip under their own licenses.

@@ -1,0 +1,11 @@
+# reproducible line ends whatever core.autocrlf says: LF in the working tree, CRLF only for Windows scripts
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.jar binary
+*.zip binary
+*.wav binary
+*.mid binary
+# score fixtures are compared as text by the tests; keep them byte-stable
+*.mmi text eol=lf
+*.mml text eol=lf

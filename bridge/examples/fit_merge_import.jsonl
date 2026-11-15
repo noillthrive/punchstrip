@@ -1,0 +1,10 @@
+# MML import, merging two tracks of the same instrument, rank limits and size suggestions (self-written MML)
+{"tool": "project_new", "args": {"title": "merge and import"}}
+{"tool": "track_import_mml", "args": {"mml": "MML@t120o5l8cdefgab>c<bagfedc4r4,o4l2ceg>c,o3l1c;", "program": 21, "name": "piano A"}}
+{"tool": "track_import_mml", "args": {"mml": "MML@o4l4eg>c<gfedc,,;", "program": 21, "name": "piano B"}}
+{"tool": "track_list", "args": {}}
+{"tool": "score_merge_tracks", "args": {"tracks": [1, 2], "dry_run": true}}
+{"tool": "score_merge_tracks", "args": {"tracks": [1, 2]}}
+{"tool": "score_mml", "args": {"track": 1}}
+{"tool": "score_stats", "args": {"track": 1, "rank": "1"}}
+{"tool": "score_fit_suggest", "args": {"track": 1, "rank": "Practice"}}

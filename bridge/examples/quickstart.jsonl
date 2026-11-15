@@ -1,0 +1,9 @@
+# quickstart: new score -> piano track -> notes -> read back -> MML and size -> render (needs the Mabinogi DLS)
+{"tool": "project_new", "args": {"title": "quickstart", "time_signature": "4/4", "tempo": 120}}
+{"tool": "track_add", "args": {"name": "piano", "program": 21}}
+{"tool": "score_put_notes", "args": {"track": 1, "part": "melody", "notes": [{"tick": 0, "len": "8", "pitch": "C4"}, {"tick": 48, "len": "8", "pitch": "D4"}, {"tick": 96, "len": "8", "pitch": "E4"}, {"tick": 144, "len": "8", "pitch": "F4"}, {"tick": 192, "len": "8", "pitch": "G4"}, {"tick": 240, "len": "8", "pitch": "A4"}, {"tick": 288, "len": "8", "pitch": "B4"}, {"tick": 336, "len": "8", "pitch": "C5"}, {"pos": "2:1:0", "len": "1", "pitch": "C5"}]}}
+{"tool": "score_put_notes", "args": {"track": 1, "part": "chord1", "notes": [{"pos": "1:1:0", "len": "2", "pitch": "E3"}, {"pos": "1:3:0", "len": "2", "pitch": "F3"}, {"pos": "2:1:0", "len": "1", "pitch": "E3"}]}}
+{"tool": "score_notes", "args": {"track": 1, "part": "all", "from_measure": 1, "to_measure": 2}}
+{"tool": "score_mml", "args": {"track": 1}}
+{"tool": "score_stats", "args": {"track": 1}}
+{"tool": "render_wav", "args": {"name": "quickstart"}}

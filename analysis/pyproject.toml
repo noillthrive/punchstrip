@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mabiear"
+version = "0.5.0"
+description = "mabi-ear: MabiIcco 렌더 WAV와 원곡 녹음을 비교하는 MCP 서버 (정렬·크로마·온셋·밸런스·보고서)"
+requires-python = ">=3.11,<3.12"
+# 정확한 버전은 requirements.txt(실행)·requirements-dev.txt(시험)에 고정한다. run-ear.cmd 는 편집 설치 없이 run_ear.py 로 띄운다.
+dependencies = ["mcp", "numpy", "scipy", "librosa", "soundfile"]
+
+[tool.setuptools]
+packages = ["mabiear"]
+
+[tool.setuptools.package-data]
+mabiear = ["data/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+cache_dir = ".cache/pytest"
+addopts = "-p no:cacheprovider"

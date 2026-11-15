@@ -1,0 +1,9 @@
+# changing meters and tempos: 4/4, 3/4 at bar 3, 5/8 at bar 4, back to 4/4 at bar 5; tempo 100 -> 90 -> 120
+{"tool": "project_new", "args": {"title": "mixed meter", "tempo": 100, "time_signatures": [{"measure": 1, "signature": "4/4"}, {"measure": 3, "signature": "3/4"}, {"measure": 4, "signature": "5/8"}, {"measure": 5, "signature": "4/4"}]}}
+{"tool": "track_add", "args": {"name": "flute", "program": 5}}
+{"tool": "score_put_notes", "args": {"track": 1, "part": "melody", "notes": [{"pos": "1:1:0", "len": "2", "pitch": "G4"}, {"pos": "2:1:0", "len": "1", "pitch": "A4"}, {"pos": "3:1:0", "len": "2.", "pitch": "B4"}, {"pos": "4:1:0", "len": "8", "pitch": "C5"}, {"pos": "5:1:0", "len": "1", "pitch": "D5"}]}}
+{"tool": "project_set_tempos", "args": {"tempos": [{"tick": 0, "bpm": 100}, {"pos": "3:1:0", "bpm": 90}, {"pos": "5:1:0", "bpm": 120}]}}
+{"tool": "project_info", "args": {}}
+{"tool": "score_notes", "args": {"track": 1, "part": "melody", "from_measure": 1, "to_measure": 5}}
+{"tool": "score_mml", "args": {"track": 1}}
+{"tool": "score_stats", "args": {"track": 1}}

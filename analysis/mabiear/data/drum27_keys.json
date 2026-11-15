@@ -1,0 +1,28 @@
+{
+  "schema": "mabibridge.drum27_keys/1",
+  "program": 27,
+  "instrument": "Drum (27)",
+  "velocity_max": 15,
+  "velocity_multiplier": 8,
+  "level_rule": "level_db = level_db_vs_kick + 40*log10(v/12) at velocity v (the synth squares velocity: v6 -> v12 is +12 dB, v12 -> v15 is +3.9 dB, same for every key)",
+  "level_reference": "level_db_vs_kick: K-weighted loudness of the first 400 ms of one 24-tick hit at v12, minus the kick (41) at v12. Measured on a MabiIcco render_wav of a probe score with one hit per key (2026-11-08). null = not measured",
+  "source": "levels measured on render_wav output (one hit per key) and suggested velocities from arranging practice; sample names from the DLS files; key 59 = closed hat and 57 = pedal hat by the players' convention (the DLS names them FootHihat and ClosedHihat)",
+  "in_game": "The kick 41 (o2f) is quiet in game even at v15 (players' speakers and the game mix drop 30-120 Hz) although it measures as the loudest key; layer a low tom 43 (about v9, beats 1 and 3) or a ghost snare 50 on kicks that must be heard. Hats and ride stay 10 dB or more under the kick even at v15.",
+  "keys": [
+    {"key": 41, "id": "kick", "class": "kick", "name_en": "Kick (bass drum)", "name_ko": "킥(베이스 드럼)", "dls_name": "BassDrum", "mml": "o2f", "level_db_vs_kick": 0.0, "peak_dbfs_v12": -18.5, "k400_db_v12": -33.1, "suggested_vel": 15, "in_game_note": "Quiet in game even at v15: layer low tom 43 (v9, beats 1 and 3) or ghost snare 50 where the kick must be heard"},
+    {"key": 43, "id": "low_tom", "class": "tom", "name_en": "Low tom", "name_ko": "로우 탐", "dls_name": "LowTom", "mml": "o2g", "level_db_vs_kick": 2.2, "peak_dbfs_v12": -16.6, "k400_db_v12": -30.9, "suggested_vel": 11, "in_game_note": "Mid-band layer for the kick in game (v9 on beats 1 and 3)"},
+    {"key": 45, "id": "snare", "class": "snare", "name_en": "Snare", "name_ko": "스네어", "dls_name": "SnareDrum", "mml": "o2a", "level_db_vs_kick": -0.2, "peak_dbfs_v12": -15.5, "k400_db_v12": -33.3, "suggested_vel": 14, "in_game_note": null},
+    {"key": 47, "id": "rim", "class": "snare", "name_en": "Rim shot", "name_ko": "림샷", "dls_name": "SnareRimShot", "mml": "o2b", "level_db_vs_kick": 0.2, "peak_dbfs_v12": -16.2, "k400_db_v12": -32.9, "suggested_vel": 12, "in_game_note": null},
+    {"key": 48, "id": "side_stick", "class": "snare", "name_en": "Side stick", "name_ko": "사이드 스틱", "dls_name": "SideStick", "mml": "o3c", "level_db_vs_kick": -7.8, "peak_dbfs_v12": -19.0, "k400_db_v12": -40.9, "suggested_vel": 15, "in_game_note": null},
+    {"key": 50, "id": "ghost", "class": "snare", "name_en": "Ghost snare", "name_ko": "고스트 스네어", "dls_name": "SnareGhost", "mml": "o3d", "level_db_vs_kick": -8.6, "peak_dbfs_v12": -20.9, "k400_db_v12": -41.7, "suggested_vel": 15, "in_game_note": "Players prefer same-key rolls; alternate with ghosts only inside fills"},
+    {"key": 52, "id": "mid_tom", "class": "tom", "name_en": "Mid tom", "name_ko": "미들 탐", "dls_name": "MiddleTom", "mml": "o3e", "level_db_vs_kick": 1.3, "peak_dbfs_v12": -15.7, "k400_db_v12": -31.8, "suggested_vel": 12, "in_game_note": null},
+    {"key": 53, "id": "high_tom", "class": "tom", "name_en": "High tom", "name_ko": "하이 탐", "dls_name": "HighTom", "mml": "o3f", "level_db_vs_kick": 0.4, "peak_dbfs_v12": -17.9, "k400_db_v12": -32.7, "suggested_vel": 12, "in_game_note": null},
+    {"key": 55, "id": "open_hat", "class": "hat", "name_en": "Open hi-hat", "name_ko": "오픈 하이햇", "dls_name": "OpenHihat", "mml": "o3g", "level_db_vs_kick": -10.8, "peak_dbfs_v12": -26.1, "k400_db_v12": -43.9, "suggested_vel": 15, "in_game_note": "Loudest hat, still about 10 dB under the kick at v15"},
+    {"key": 57, "id": "pedal_hat", "class": "hat", "name_en": "Pedal (foot) hi-hat", "name_ko": "페달(풋) 하이햇", "dls_name": "ClosedHihat", "mml": "o3a", "level_db_vs_kick": -13.1, "peak_dbfs_v12": -25.8, "k400_db_v12": -46.2, "suggested_vel": 15, "in_game_note": "Players' convention: 57 = pedal hat (the DLS sample is named ClosedHihat)"},
+    {"key": 59, "id": "closed_hat", "class": "hat", "name_en": "Closed hi-hat", "name_ko": "닫힌 하이햇", "dls_name": "FootHihat", "mml": "o3b", "level_db_vs_kick": -14.0, "peak_dbfs_v12": -26.8, "k400_db_v12": -47.1, "suggested_vel": 15, "in_game_note": "Common player convention: 59 = closed hat; about 14 dB under the kick even at v15"},
+    {"key": 60, "id": "crash", "class": "crash", "name_en": "Crash cymbal", "name_ko": "크래시", "dls_name": "CrashCymbal", "mml": "o4c", "level_db_vs_kick": -4.6, "peak_dbfs_v12": -24.0, "k400_db_v12": -37.7, "suggested_vel": 15, "in_game_note": null},
+    {"key": 62, "id": "crash_choke", "class": "crash", "name_en": "Crash cymbal choke", "name_ko": "크래시 초크", "dls_name": "CrashCymbalChoke", "mml": "o4d", "level_db_vs_kick": null, "peak_dbfs_v12": null, "k400_db_v12": null, "suggested_vel": null, "in_game_note": null},
+    {"key": 64, "id": "ride", "class": "ride", "name_en": "Ride cymbal", "name_ko": "라이드", "dls_name": "RideCymbal", "mml": "o4e", "level_db_vs_kick": -16.8, "peak_dbfs_v12": -31.4, "k400_db_v12": -49.9, "suggested_vel": 15, "in_game_note": "Quietest key: about 17 dB under the kick even at v15"},
+    {"key": 65, "id": "ride_cup", "class": "ride", "name_en": "Ride cymbal cup", "name_ko": "라이드 컵", "dls_name": "RideCymbalCup", "mml": "o4f", "level_db_vs_kick": null, "peak_dbfs_v12": null, "k400_db_v12": null, "suggested_vel": null, "in_game_note": null}
+  ]
+}

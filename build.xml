@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  punchstrip build (Apache Ant 1.10, JDK 17+). punchstrip contains no MabiIcco code: the bridge is compiled and tested
+  against an installed MabiIcco ("app" folder with MabiIcco.jar, lib\flatlaf, lib\commons-compress).
+
+    ant jar   -Dmabiicco.app=C:\Tools\MabiIcco-1.5.12\app    build\MabiIccoBridge.jar (+ a copy in the repository root)
+    ant test  -Dmabiicco.app=...                             JUnit tests of test-bridge\ (needs JUnit 4.12 + Hamcrest 1.3
+                                                             in lib\test\, not included: see lib\test\README.md)
+    ant smoke -Dmabiicco.app=...                             smoke-test.cmd (version, selfcheck, one MCP session)
+    ant dist  -Dmabiicco.app=...                             dist\punchstrip-<version>-win.zip
+    ant clean
+
+  Without -Dmabiicco.app the environment variable MABIICCO_APP is used.
+-->
+<project name="punchstrip" basedir="." default="jar">
+
+	<property environment="env" />
+
+	<property name="version" value="0.7.0" />
+	<property name="bridge.version" value="0.7.0" />
+	<property name="ear.version" value="0.5.0" />
+
+	<property name="src" location="src-bridge" />
+	<property name="test.src" location="test-bridge" />
+	<!-- optional tests that need your own data files (never part of the repository, see .gitignore) -->
+	<property name="test.local" location="test-bridge-local" />
+	<property name="build" location="build" />
+	<property name="classes" location="${build}/classes" />
+	<property name="test.classes" location="${build}/test-classes" />
+	<property name="test.work" location="${build}/test" />
+	<property name="dist" location="dist" />
+	<property name="jar.name" value="MabiIccoBridge.jar" />
+	<property name="jar.file" location="${build}/${jar.name}" />
+	<property name="zip.file" location="${dist}/punchstrip-${version}-win.zip" />
+
+	<!-- the MabiIcco install: -Dmabiicco.app=... first, then the environment variable MABIICCO_APP -->
+	<condition property="mabiicco.app" value="${env.MABIICCO_APP}">
+		<isset property="env.MABIICCO_APP" />
+	</condition>
+
+	<path id="cp.gson">
+		<fileset dir="lib/gson" includes="*.jar" />
+	</path>
+	<path id="cp.junit">
+		<pathelement location="lib/test/junit-4.12.jar" />
+		<pathelement location="lib/test/hamcrest-core-1.3.jar" />
+	</path>
+
+	<target name="check-mabiicco">
+		<fail unless="mabiicco.app">MabiIcco is required: give the "app" folder of your MabiIcco install.
+  punchstrip contains no MabiIcco code and builds and runs only against an installed MabiIcco (1.5.12 is known to work).
+  Get MabiIcco from its author: https://github.com/fourthline/mmlTools (Releases), install it, then either
+    ant -Dmabiicco.app=C:\Tools\MabiIcco-1.5.12\app ...
+  or set the environment variable MABIICCO_APP to that folder (the folder that contains MabiIcco.jar and lib\).</fail>
+		<condition property="mabiicco.ok">
+			<and>
+				<available file="${mabiicco.app}/MabiIcco.jar" type="file" />
+				<available file="${mabiicco.app}/lib/flatlaf" type="dir" />
+				<available file="${mabiicco.app}/lib/commons-compress" type="dir" />
+			</and>
+		</condition>
+		<fail unless="mabiicco.ok">MabiIcco is required: "${mabiicco.app}" does not contain MabiIcco.jar, lib\flatlaf\ and lib\commons-compress\.
+  It must be the "app" folder of a MabiIcco install (1.5.12 is known to work), from https://github.com/fourthline/mmlTools (Releases).</fail>
+		<path id="cp.mabiicco">
+			<pathelement location="${mabiicco.app}/MabiIcco.jar" />
+			<fileset dir="${mabiicco.app}/lib" includes="flatlaf/*.jar commons-compress/*.jar" />
+		</path>
+		<echo message="MabiIcco: ${mabiicco.app}" />
+	</target>
+
+	<target name="clean" description="delete build\, dist\ and the jar copy in the root">
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+		<delete file="${basedir}/${jar.name}" />
+	</target>
+
+	<!-- release="17" cannot be combined with add-exports of a system module, so source/target are used -->
+	<target name="compile" depends="check-mabiicco" description="compile src-bridge against the MabiIcco install">
+		<delete dir="${classes}" />
+		<mkdir dir="${classes}" />
+		<javac srcdir="${src}" destdir="${classes}" encoding="UTF-8" source="17" target="17" includeantruntime="false">
+			<classpath>
+				<path refid="cp.mabiicco" />
+				<path refid="cp.gson" />
+			</classpath>
+			<compilerarg line="--add-exports java.desktop/com.sun.media.sound=ALL-UNNAMED" />
+		</javac>
+		<!-- data files of src-bridge (sounding pitch table, drum key table, signature table) go into the jar -->
+		<copy todir="${classes}">
+			<fileset dir="${src}" includes="**/*.properties **/*.json" />
+		</copy>
+	</target>
+
+	<target name="jar" depends="compile" description="build\MabiIccoBridge.jar (bridge classes only) and a copy in the root">
+		<jar jarfile="${jar.file}">
+			<fileset dir="${classes}" />
+			<manifest>
+				<attribute name="Main-Class" value="mabibridge.Main" />
+				<attribute name="Implementation-Title" value="MabiIccoBridge (punchstrip)" />
+				<attribute name="Implementation-Version" value="${bridge.version}" />
+			</manifest>
+		</jar>
+		<!-- bridge\run-bridge.cmd and smoke-test.cmd use the jar in the root (as in the release zip) -->
+		<copy file="${jar.file}" todir="${basedir}" overwrite="true" />
+	</target>
+
+	<target name="check-junit">
+		<available file="lib/test/junit-4.12.jar" type="file" property="junit.jar.ok" />
+		<available file="lib/test/hamcrest-core-1.3.jar" type="file" property="hamcrest.jar.ok" />
+		<condition property="junit.missing.list" value="lib\test\junit-4.12.jar and lib\test\hamcrest-core-1.3.jar">
+			<and>
+				<not><isset property="junit.jar.ok" /></not>
+				<not><isset property="hamcrest.jar.ok" /></not>
+			</and>
+		</condition>
+		<condition property="junit.missing.list" value="lib\test\junit-4.12.jar">
+			<not><isset property="junit.jar.ok" /></not>
+		</condition>
+		<condition property="junit.missing.list" value="lib\test\hamcrest-core-1.3.jar">
+			<not><isset property="hamcrest.jar.ok" /></not>
+		</condition>
+		<fail if="junit.missing.list">ant test needs the test-only libraries, which are not included: missing ${junit.missing.list}.
+  Place junit-4.12.jar (JUnit 4.12, junit:junit:4.12) and hamcrest-core-1.3.jar (Hamcrest Core 1.3,
+  org.hamcrest:hamcrest-core:1.3) in lib\test\ - download locations and SHA-256 in lib\test\README.md.
+  ant jar, ant smoke and ant dist do not need them.</fail>
+	</target>
+
+	<target name="test" depends="check-junit,compile" description="JUnit tests of test-bridge (isolated user.home, never the real one)">
+		<delete dir="${test.classes}" />
+		<delete dir="${test.work}" />
+		<mkdir dir="${test.classes}" />
+		<mkdir dir="${test.work}/reports" />
+		<mkdir dir="${test.work}/home" />
+		<mkdir dir="${test.work}/tmp" />
+		<path id="cp.test">
+			<pathelement location="${test.classes}" />
+			<pathelement location="${classes}" />
+			<path refid="cp.mabiicco" />
+			<path refid="cp.gson" />
+			<path refid="cp.junit" />
+		</path>
+		<javac destdir="${test.classes}" encoding="UTF-8" source="17" target="17" includeantruntime="false"
+			classpathref="cp.test">
+			<compilerarg line="--add-exports java.desktop/com.sun.media.sound=ALL-UNNAMED" />
+			<src>
+				<dirset dir="${basedir}" includes="test-bridge test-bridge-local" />
+			</src>
+		</javac>
+		<junit fork="yes" forkmode="once" dir="${basedir}" printsummary="yes" haltonfailure="no"
+			failureproperty="test.failed" errorproperty="test.failed">
+			<jvmarg line="--add-exports java.desktop/com.sun.media.sound=ALL-UNNAMED" />
+			<jvmarg value="-Djava.awt.headless=true" />
+			<jvmarg value="-Dmabiicco.test_mode" />
+			<jvmarg value="-Dmabiicco.ticktable=tickTable.dat" />
+			<jvmarg value="-Duser.home=${test.work}/home" />
+			<jvmarg value="-Djava.io.tmpdir=${test.work}/tmp" />
+			<jvmarg value="-Xmx1024m" />
+			<!-- optional map of your own test data for test-bridge-local (or env MABIBRIDGE_TESTDATA) -->
+			<syspropertyset>
+				<propertyref name="mabibridge.testdata.map" />
+			</syspropertyset>
+			<classpath refid="cp.test" />
+			<formatter type="brief" usefile="false" />
+			<formatter type="xml" />
+			<batchtest todir="${test.work}/reports">
+				<fileset dir="${test.src}" includes="**/*Test.java" />
+				<fileset dir="${test.local}" includes="**/*Test.java" erroronmissingdir="false" />
+			</batchtest>
+		</junit>
+		<fail if="test.failed" message="tests failed (see ${test.work}/reports)" />
+	</target>
+
+	<target name="smoke" depends="jar" description="smoke-test.cmd with MABIICCO_APP set to the MabiIcco install">
+		<exec executable="cmd" dir="${basedir}" failonerror="true">
+			<arg value="/c" />
+			<arg file="${basedir}/smoke-test.cmd" />
+			<env key="MABIICCO_APP" file="${mabiicco.app}" />
+		</exec>
+	</target>
+
+	<!-- the release zip, files at the zip root; no tests, no MabiIcco, no DLS, no Python environment -->
+	<target name="dist" depends="jar" description="dist\punchstrip-version-win.zip">
+		<mkdir dir="${dist}" />
+		<delete file="${zip.file}" />
+		<zip destfile="${zip.file}" encoding="UTF-8">
+			<zipfileset file="${jar.file}" />
+			<zipfileset dir="${basedir}" includes="README.md BUILD.md LICENSE NOTICE smoke-test.cmd" />
+			<zipfileset dir="${basedir}" includes="lib/gson/** lib/test/README.md" />
+			<zipfileset dir="${basedir}" includes="bridge/run-bridge.cmd bridge/README.md bridge/examples/**" />
+			<zipfileset dir="${basedir}"
+				includes="analysis/mabiear/** analysis/pyproject.toml analysis/README.md analysis/requirements.txt analysis/requirements-dev.txt analysis/run-ear.cmd analysis/run_ear.py analysis/scripts/ear_requests.py analysis/scripts/pipe_check.py"
+				excludes="**/__pycache__/** **/*.pyc" />
+		</zip>
+		<echo message="${zip.file}" />
+	</target>
+</project>

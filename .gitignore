@@ -1,0 +1,33 @@
+# build output (ant compile / jar / test / dist)
+/build/
+/dist/
+/MabiIccoBridge.jar
+
+# created by the launchers inside the install folder
+/bridge/runtime/
+/output/
+/analysis/.venv/
+/analysis/.cache/
+/analysis/*.egg-info/
+__pycache__/
+*.pyc
+/bridge/examples/*.err
+
+# test-only third-party jars: each developer places them (see lib/test/README.md)
+/lib/test/*.jar
+
+# never commit MabiIcco itself, the game's sound files or your own test data
+/MabiIcco.jar
+/lib/flatlaf/
+/lib/commons-compress/
+/lib/jna/
+*.dls
+/test-bridge-local/
+mabibridge-project.properties
+
+# IDE files
+/.classpath
+/.project
+/.settings/
+/.idea/
+/.vscode/

@@ -1,0 +1,15 @@
+[Settings]
+Encoding=ks_c_5601-1987
+Title=시험곡 3MLE
+Source=클로드
+Memo=
+[Channel1]
+t100v10l8o5cdefgab>c
+[Channel2]
+v6l2o4ceg>c
+[Channel3]
+v12l4o3cegc
+[3MLE EXTENSION]
+d=swAAAAAAAAAAAAAAQlpoOTFBWSZTWaa4NukAACFlHfg2VQRAAEAAAAEIgQGAAAgAICAAVDUAA0AeoNqU
+d=9RoMymg0QZTCq8lAFhMkrsqsoYLa2c5ZUTkl/TPAJDB0eB+LuSKcKEhTXBt0gA==
+c=3025317309
