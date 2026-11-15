@@ -8,7 +8,7 @@ MabiIcco 브리지(Java)가 만든 **렌더 WAV + 메타 JSON**과 **원곡 녹�
 
 ## 1. 설치와 실행
 
-설치 전체(다른 PC, 등록, 스모크 시험)는 맨 위 `README.md`. 여기서는 mabi-ear만 적는다. Python 3.11(`py -3.11`, 확인 3.11.9).
+설치 전체(다른 PC, 등록, 스모크 시험)는 `INSTALL.md`. 여기서는 mabi-ear만 적는다. Python 3.11(`py -3.11`, 확인 3.11.9).
 가상환경·캐시·임시 폴더는 모두 `analysis\.venv`, `analysis\.cache` 안에만 생긴다(git 제외, 사용자 홈에 쓰지 않음).
 
 **자동(권장)**: `run-ear.cmd`를 처음 실행하면 `py -3.11`이 있는지 보고, `.venv`를 만들고 `requirements.txt`(실행용 고정 버전)를
@@ -91,7 +91,7 @@ claude mcp add --transport stdio mabi-ear -- cmd /c <설치>\analysis\run-ear.cm
 | `INTERNAL` | 그 밖의 예외(로그에 traceback) |
 
 보호 폴더(출력 금지): 프로젝트 파일 `mabibridge-project.properties`의 `protect` 항목(브리지와 같은 파일·같은 찾기 규칙,
-맨 위 `README.md`)과 `--protect`. 경로는 정션·심볼릭 링크를 푼 실제 경로로 비교한다. 분석 JSON(align_json 등)은 같은 출력 폴더에 있어도 되지만 덮어쓰지 않는다.
+`INSTALL.md` 부록)과 `--protect`. 경로는 정션·심볼릭 링크를 푼 실제 경로로 비교한다. 분석 JSON(align_json 등)은 같은 출력 폴더에 있어도 되지만 덮어쓰지 않는다.
 
 ## 3. 도구 18개 (버전 0.5.0)
 
@@ -392,7 +392,7 @@ A의 n마디를 B의 n+k마디와 짝짓는다. `from_measure`/`to_measure`는 A
 - `OPENBLAS_NUM_THREADS=1`: numpy의 OpenBLAS가 코어 수만큼 버퍼를 잡아 16코어에서 커밋이 약 500MB 늘어나는 것을
   막는다. 이 분석은 BLAS를 거의 쓰지 않아 속도 차이는 없었다.
 - 도구는 한 번에 하나씩 실행한다(서버 안 잠금). 긴 분석 중 다른 호출은 기다린다.
-- `phone_version`(출력 `out`을 안 주면 입력 WAV 옆 `폰용\`)과 `excerpt_ab`(`out_dir`를 안 주면 렌더 WAV 옆 `변형\`)는
+- `phone_version`(출력 `out`을 안 주면 입력 WAV 옆 `폰용\`)과 `excerpt_ab`(`out_dir`를 안 주면 렌더 WAV 옆 `변형\폰용\`, `phone: false`면 `변형\`)는
   `--out-dir`·`MABIBRIDGE_OUT`이 아니라 입력 옆에 쓴다. 보호 폴더 규칙은 그대로 적용된다.
 - **스템 단서의 한계**: 라이드와 오픈 하이햇은 둘 다 긴 고역 감쇠라 잘 갈리지 않는다(라이드는 언제나 낮은 신뢰도).
   쉐이커 같은 촘촘한 질감은 조용한 하이햇 여러 개로 나온다(`shaker_beats`로 표시). 탐은 80–300 Hz가 뚜렷하고 길 때만 —

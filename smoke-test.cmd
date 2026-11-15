@@ -1,5 +1,5 @@
 @echo off
-rem punchstrip: smoke test for the mabiicco MCP bridge (run it from a normal cmd window, not from Claude).
+rem punchstrip: smoke test for the mabiicco MCP bridge (run it from cmd or PowerShell; an agent may run it).
 rem   1. bridge\run-bridge.cmd --version
 rem   2. bridge\run-bridge.cmd --selfcheck          (classes, resources, DLS files, a 1-second render in memory)
 rem   3. McpSmoke: starts bridge\run-bridge.cmd as an MCP server and talks to it over stdio
@@ -49,7 +49,7 @@ if not "%MS%"=="0" set "FAILED=1"
 echo.
 if defined OLDCP chcp %OLDCP% >nul
 if "%FAILED%"=="0" goto pass
-echo FAIL  - logs in output\smoke; see README.md (install check)
+echo FAIL  - logs in output\smoke; see INSTALL.md (6. smoke test)
 exit /b 1
 :pass
 echo PASS  - logs in output\smoke

@@ -1,6 +1,6 @@
 # BUILD — punchstrip 빌드와 시험
 
-설치와 MCP 클라이언트 등록은 `README.md`. 이 문서는 저장소에서 빌드·시험하는 사람을 위한 것이다.
+설치와 MCP 클라이언트 등록은 `INSTALL.md`. 이 문서는 저장소에서 빌드·시험하는 사람을 위한 것이다.
 
 punchstrip에는 MabiIcco의 코드가 들어 있지 않다. 브리지는 **설치된 MabiIcco**(그 `app` 폴더, 아래 `<app>`)의 `MabiIcco.jar`에 대해 컴파일하고, 그것과 함께 실행한다. MabiIcco를 직접 빌드하는 방법은 다루지 않는다.
 
@@ -26,7 +26,7 @@ ant clean
 - `-Dmabiicco.app`를 주지 않으면 환경 변수 `MABIICCO_APP`을 쓴다. 둘 다 없거나 그 폴더에 `MabiIcco.jar`·`lib\flatlaf\`·`lib\commons-compress\`가 없으면 빌드가 "MabiIcco is required"로 멈추고 받는 곳을 알려 준다.
 - `jar`: `src-bridge/`를 컴파일해 `build/MabiIccoBridge.jar`(브리지 클래스와 자료 파일 3개 — `sounding_pitch.properties`, `drum27_keys.json`, `signature_home.properties` — 뿐, MabiIcco 엔진 없음)를 만들고 저장소 루트에 사본을 둔다(`bridge\run-bridge.cmd`·`smoke-test.cmd`가 루트의 jar를 쓴다. 릴리스 zip과 같은 배치).
 - `test`: 아래 6절(시험용 jar 두 개가 없으면 없는 파일 이름과 `lib/test/README.md`를 알리고 바로 멈춘다). `smoke`: `MABIICCO_APP`을 설치 폴더로 두고 `smoke-test.cmd`를 돌린다.
-- `dist`: `dist/punchstrip-0.7.0-win.zip`. zip 맨 위에 `MabiIccoBridge.jar`, `lib/gson/`, `lib/test/README.md`(시험용 jar 안내만), `bridge/`(실행기, 문서, 예 3쌍), `analysis/`(mabi-ear 소스·실행기·requirements·README, 드라이버 스크립트 2개), `smoke-test.cmd`, `README.md`, `BUILD.md`, `LICENSE`, `NOTICE`. 시험, MabiIcco, DLS 음원, 파이썬 환경은 넣지 않는다.
+- `dist`: `dist/punchstrip-0.7.0-win.zip`. zip 맨 위에 `MabiIccoBridge.jar`, `lib/gson/`, `lib/test/README.md`(시험용 jar 안내만), `bridge/`(실행기, 문서, 예 3쌍), `analysis/`(mabi-ear 소스·실행기·requirements·README, 드라이버 스크립트 2개), `smoke-test.cmd`, `README.md`, `INSTALL.md`, `BUILD.md`, `LICENSE`, `NOTICE`. 시험, MabiIcco, DLS 음원, 파이썬 환경은 넣지 않는다.
 - 실행할 때는 `MABIICCO_APP=<app>`를 준다. `run-bridge.cmd`가 `-cp "<app>\MabiIcco.jar;<app>\lib\flatlaf\*;<app>\lib\commons-compress\*;MabiIccoBridge.jar;lib\gson\*" mabibridge.Main`으로 띄운다.
 - 브리지는 MabiIcco의 JNA와 `LauncherSupport`를 쓰지 않는다(MabiIcco 창 실행기 전용). 브리지 0.6.1에서 시험 전체와 MCP 대화 한 번의 클래스 로드 기록(`-Xlog:class+load`)을 보았을 때 `com.sun.jna.*`·`LauncherSupport`는 한 번도 로드되지 않았다(그 뒤 판에서는 다시 재지 않았다).
 - 브리지 컴파일은 `release="17"` 대신 `source/target=17`을 쓴다(`--release`와 `--add-exports java.desktop/...`는 함께 쓸 수 없다).
@@ -83,7 +83,7 @@ mabi-ear(`analysis\run-ear.cmd`, `python -I -X utf8 run_ear.py`)의 기본 출�
 - DLS가 없으면 렌더·DLS 시험은 건너뛴다(stderr `[SKIP]`).
 - 선택: 자기 자료(악보·MIDI)로 돌리는 시험을 `test-bridge-local/`에 두면 `ant test`가 함께 컴파일하고 돌린다(`.gitignore`가 제외한다. 자료 위치는 `-Dmabibridge.testdata.map=<파일>` 또는 환경 변수 `MABIBRIDGE_TESTDATA`로 넘긴다).
 - pytest(mabi-ear): `analysis`에서 `requirements-dev.txt`를 깐 파이썬 3.11로 `python -X utf8 -m pytest -q`. 요구 파일은 ASCII라 UTF-8 모드 없이도 `pip install -r`이 된다.
-- 스모크: `smoke-test.cmd`(설치 확인, `README.md`) 또는 `ant smoke`. 또는 `java -Dmabiicco.test_mode -Duser.home=bridge\runtime\home -cp "MabiIccoBridge.jar;lib\gson\*" mabibridge.mcp.McpSmoke` — 브리지를 `bridge\run-bridge.cmd`로 자식 프로세스로 띄워 initialize부터 렌더·저장·ping까지 주고받고, 자식 stdout에 JSON-RPC 아닌 줄이나 CRLF가 하나도 없는지 본다. `-Dmabibridge.smoke.midi=<file.mid>`면 참조 MIDI 단계도 돈다.
+- 스모크: `smoke-test.cmd`(설치 확인, `INSTALL.md`) 또는 `ant smoke`. 또는 `java -Dmabiicco.test_mode -Duser.home=bridge\runtime\home -cp "MabiIccoBridge.jar;lib\gson\*" mabibridge.mcp.McpSmoke` — 브리지를 `bridge\run-bridge.cmd`로 자식 프로세스로 띄워 initialize부터 렌더·저장·ping까지 주고받고, 자식 stdout에 JSON-RPC 아닌 줄이나 CRLF가 하나도 없는지 본다. `-Dmabibridge.smoke.midi=<file.mid>`면 참조 MIDI 단계도 돈다.
 
 ## 7. 오프라인 WAV 렌더 `render_wav`
 

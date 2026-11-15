@@ -1,6 +1,6 @@
 # punchstrip — mabiicco 브리지, 도구 39개 (브리지 0.7.0)
 
-`run-bridge.cmd`를 인자 없이 실행하면 표준입출력(stdio) MCP 서버가 뜬다. 설치·등록(환경 변수 `MABIICCO_APP`·`MABI_DLS`, 프로젝트 파일, `smoke-test.cmd`, `claude mcp add`)은 맨 위 `README.md`, 빌드는 `BUILD.md`, 소리 분석 서버 mabi-ear의 도구는 `analysis/README.md`. 아래 예의 경로 `C:\mabi-mcp\…`는 압축을 푼 곳의 예다.
+`run-bridge.cmd`를 인자 없이 실행하면 표준입출력(stdio) MCP 서버가 뜬다. 설치·등록(환경 변수 `MABIICCO_APP`·`MABI_DLS`, 프로젝트 파일, `smoke-test.cmd`, `claude mcp add`)은 `INSTALL.md`, 빌드는 `BUILD.md`, 소리 분석 서버 mabi-ear의 도구는 `analysis/README.md`. 아래 예의 경로 `C:\mabi-mcp\…`는 압축을 푼 곳의 예다.
 
 > **클로드에게**: 마비노기 악기는 악보에 적은 음과 실제로 울리는 음이 다르다(피아노는 1옥타브, 바이올린은 2옥타브 위로 울린다 — 아래 "들리는 음" 절). **원곡 음높이를 옮겨 적을 때는 `score_put_notes`·`score_replace_range`에 `pitch_mode: "sounding"`을 쓴다.** 그러면 원곡 MIDI의 음 번호를 그대로 주어도 서버가 악기에 맞는 적을 음으로 바꿔 넣는다. `compare`는 기본이 들리는 음 기준이다.
 
@@ -359,7 +359,7 @@ AI 전사 MIDI는 마디마다 템포 이벤트가 있어도 오디오를 따르
 
 **성부 교차는 정보**: 위 파트 음이 아래 파트보다 낮아지는 곳은 전문 편곡에서도 흔하다. `summary.crossings`와 `measures[].crossings`는 그대로 세지만, 요약문(`text`)의 "문제가 많은 마디" 순위와 마디별 문제 목록에서는 빼고, "참고: 성부 교차 N곳(위 성부 음이 아래 성부보다 낮아지는 곳, 전문 편곡에서도 흔함)"으로 따로 한 문장 쓴다(없으면 "참고: 성부 교차 없음"). 상세 형식(하나로 맞춤): `참고: 성부 교차 N곳(위 성부 음이 아래 성부보다 낮아지는 곳, 전문 편곡에서도 흔함): 트랙 T K곳(처음 위치 설명[, 위치 설명…])[, 트랙 …][ 외 M개 트랙]` — 교차가 있는 트랙이 하나면 그 트랙 예시를 시작 순으로 3개까지, 여럿이면 많은 순 3트랙까지 트랙마다 첫 예시 하나. 위치 설명은 `마디:박:틱 멜로디 E4가 화음1 G4보다 낮음` 또는 `마디:박:틱 화음1 C4가 화음2 D4보다 낮음`. 교차 위치(`measures[].crossings[].pos`와 문장 속 "처음 27:4:78" 같은 위치)는 참조가 아니라 **악보 위치** 기준이다(마디 차가 있어도 악보 마디 번호. 교차가 담기는 `measures[]` 항목은 참조 마디). 쓰기 응답의 `compare_summary.text`도 문제 목록(음역 이탈·겹침·글자 수 등)에서 교차를 빼고, 교차가 있을 때만 둘째 문장 끝에 " — 참고: 성부 교차 N곳(전문 편곡에서도 흔함)"을 붙인다(두 문장 이내 유지).
 
-**한계**: 마디 차는 곡 전체에서 하나(트랙마다 다른 값은 매핑 항목으로만)이고 박자 구성이 다르면 어긋날 수 있다. `auto`는 기본 −4~+4만 본다(`auto_offset_max`로 ±64까지). 구간별로 다른 마디 차(`measure_offsets: [{from, to, offset}]`)는 아직 없다(BUILD-NOTES 10절 남은 일). 성부 교차는 적은 음 기준이다.
+**한계**: 마디 차는 곡 전체에서 하나(트랙마다 다른 값은 매핑 항목으로만)이고 박자 구성이 다르면 어긋날 수 있다. `auto`는 기본 −4~+4만 본다(`auto_offset_max`로 ±64까지). 구간별로 다른 마디 차(`measure_offsets: [{from, to, offset}]`)는 아직 없다. 성부 교차는 적은 음 기준이다.
 
 ## 들리는 음 — 적은 음과 실제로 울리는 음
 
@@ -378,7 +378,7 @@ AI 전사 MIDI는 마디마다 템포 이벤트가 있어도 오디오를 따르
 
 **소리 나는 적은 음 창**(0.7.0, 표의 `audible.<번호>=lo..hi`): 렌더로 적은 음 11~119를 하나씩 쳐 보아 무음이던 음. 베이스 29는 14~103 밖도 무음(56~61에 더해), 남성 음성 80~84·마이크 120은 29~61, 여성 목소리 90~94·마이크 121은 24~57, 코러스 100은 26~58, 110은 31~60 밖이 무음이다. 창 밖에 적은 음은 `pitch_mode` written이어도 음표마다 `silent: true`, `silent_notes`에 세고, 쓰면 `silent_note` 경고, `sounding`이면 `PITCH_NOT_PRODUCIBLE`. `instruments`의 `sounding`에 `audible_written{from, to, from_name, to_name}`(창이 없는 악기는 null)과 창 밖 구간이 `silent`에 더해진다. 일반 악기는 넣지 않았다(예: 플룻 5는 DLS 음역 60~95 밖 27~100도 렌더에서 울린다). 시험 `SilentRangeRenderTest`가 같은 렌더로 표를 다시 확인한다(DLS 없으면 SKIP).
 
-출처: 악기마다 render_wav로 렌더한 WAV의 기본 주파수 측정과 MSXspirit01~05.dls 샘플 분석. 두 조사가 같은 결론이고 측정일은 2026-11-01(창은 2026-11-15). 렌더(Gervill + 마비노기 DLS) 기준이며 게임 클라이언트 소리로 확인하지는 않았다. 표를 고치는 방법은 `BUILD-NOTES.md` 10절.
+출처: 악기마다 render_wav로 렌더한 WAV의 기본 주파수 측정과 MSXspirit01~05.dls 샘플 분석. 두 조사가 같은 결론이고 측정일은 2026-11-01(창은 2026-11-15). 렌더(Gervill + 마비노기 DLS) 기준이며 게임 클라이언트 소리로 확인하지는 않았다. 표를 고치는 방법은 `BUILD.md` "8. 들리는 음 표".
 
 **클로드용 권고**: (1) 원곡 MIDI의 음을 옮겨 적을 때는 `pitch_mode: "sounding"`으로 넣는다(원곡 음 번호 그대로). (2) 적을 음을 직접 고를 때는 `instruments`의 `sounding_range`로 들리는 음역을 확인한다. (3) 베이스 56~61은 소리가 나지 않으니 쓰지 않는다(`silent_note` 경고). (4) 전자 기타·가야금·베이스는 두 세트의 음색이 달라 한 트랙에서 섞으면 `timbre_mix`로 알려 준다. (5) 남의 편곡을 분석할 때는 `compare_suggest_mapping`에 `measure_offset: "auto"`와 `octave_tolerant: true`를 함께 주고, 후보의 `octave_shift`로 그 트랙이 원곡보다 몇 옥타브 높게 울리는지 본다.
 
@@ -413,7 +413,7 @@ AI 전사 MIDI는 마디마다 템포 이벤트가 있어도 오디오를 따르
 
 **오류**: `NO_PROJECT`, `NO_TRACK`, `BAD_ARGUMENT`(split·tail_sec·name·상대 경로 out_dir 등), `PROTECTED_PATH`(out_dir 또는 --render-dir이 보호 폴더 안), `FILE_EXISTS`(overwrite false인데 WAV나 JSON이 이미 있음. 렌더 전에 검사), `NOTHING_TO_RENDER`(고른 범위·트랙·파트에 음표 없음), `DLS_UNAVAILABLE`, `SYNTH_UNAVAILABLE`(신시사이저 열기 실패), `RENDER_FAILED`, `IO_ERROR`. 스택은 stderr.
 
-**한계**: 자동 게인 때문에 split 파일의 합 ≠ 전체 파일(밸런스는 전체 파일 기준), 6.8ms보다 짧은 음은 안 울릴 수 있음, GUI WAV와 샘플 단위로 같지 않음, 모바일 타악기(타입 M)는 렌더마다 다를 수 있음, 악기마다 적은 음과 울리는 음이 다름(피아노·하프 +1옥타브, 바이올린 +2옥타브 등 — "들리는 음" 절). 자세한 것은 `BUILD-NOTES.md` 9절.
+**한계**: 자동 게인 때문에 split 파일의 합 ≠ 전체 파일(밸런스는 전체 파일 기준), 6.8ms보다 짧은 음은 안 울릴 수 있음, GUI WAV와 샘플 단위로 같지 않음, 모바일 타악기(타입 M)는 렌더마다 다를 수 있음, 악기마다 적은 음과 울리는 음이 다름(피아노·하프 +1옥타브, 바이올린 +2옥타브 등 — "들리는 음" 절). 자세한 것은 `BUILD.md` "7. 오프라인 WAV 렌더".
 
 ## 편곡 프로필
 

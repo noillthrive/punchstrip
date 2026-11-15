@@ -184,7 +184,7 @@
 		<delete file="${zip.file}" />
 		<zip destfile="${zip.file}" encoding="UTF-8">
 			<zipfileset file="${jar.file}" />
-			<zipfileset dir="${basedir}" includes="README.md BUILD.md LICENSE NOTICE smoke-test.cmd" />
+			<zipfileset dir="${basedir}" includes="README.md INSTALL.md BUILD.md LICENSE NOTICE smoke-test.cmd" />
 			<zipfileset dir="${basedir}" includes="lib/gson/** lib/test/README.md" />
 			<zipfileset dir="${basedir}" includes="bridge/run-bridge.cmd bridge/README.md bridge/examples/**" />
 			<zipfileset dir="${basedir}"
